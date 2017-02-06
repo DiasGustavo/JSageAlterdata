@@ -1,0 +1,3 @@
+Registro: Existentes no SAGE: 4031 --- 4880 ----- DIONE MARIA DA SILVA --- Data:Thu Nov 24 17:34:37 GFT 2016
+Registro: Gravado o funcionario de código: 4031 nome: DIONE MARIA DA SILVA ---  Data:Thu Nov 24 17:34:38 GFT 2016
+Registro: Existentes no SAGE: 4031 --- 4880 ----- DIONE MARIA DA SILVA ---  Data:Thu Nov 24 17:34:39 GFT 2016
