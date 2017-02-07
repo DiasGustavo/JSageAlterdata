@@ -36,7 +36,19 @@ class GerenciadorConexao {
                     throw new JSageImportException (mensagem);
                 }
 	}
-    
+    static Connection getConnectionPostgresql (String url) throws JSageImportException{
+        try{
+			Class.forName("org.postgresql.Driver");
+                        //jdbc:sqlserver://servidor:porta;databaseName=banco;user=usuario;password=senha;"
+			return DriverManager.getConnection(url);
+		} catch (SQLException ex){
+                    String mensagem = "Não foi possível realizar a conexão com o banco de dados";
+                    throw new JSageImportException(mensagem);
+		} catch (ClassNotFoundException ex) {
+                    String mensagem = "Não foi possível localizar o driver de conexão!";
+                    throw new JSageImportException (mensagem);
+                }
+    }
     static Connection getConnection(String url) throws JSageImportException{
 		//System.out.println("Conectando ao banco");
 		try{

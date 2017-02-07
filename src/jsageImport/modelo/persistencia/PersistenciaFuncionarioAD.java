@@ -49,7 +49,7 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            con = GerenciadorConexao.getConnection(urlAD);
+            con = GerenciadorConexao.getConnectionPostgresql(urlAD);
             stmt = con.prepareStatement(SQL_PESQUISARTODOS);
             rs = stmt.executeQuery();
             List listaFuncionarios = new ArrayList();
