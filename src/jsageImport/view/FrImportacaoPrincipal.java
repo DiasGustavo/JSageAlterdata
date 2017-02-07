@@ -148,7 +148,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         lStatus = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Consulta Empresas no Banco NG");
+        setTitle("Consulta Empresas no Banco AlterData");
 
         tFuncionarios.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
