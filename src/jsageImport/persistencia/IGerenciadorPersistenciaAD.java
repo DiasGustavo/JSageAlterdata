@@ -5,14 +5,15 @@
  */
 package jsageImport.persistencia;
 
-import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioNG;
+import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioAD;
+
 
 /**
  *
- * @author Nyedja Lucena
+ * @author Jefferson Lucena
  */
 public interface IGerenciadorPersistenciaAD {
     
-     public IPersistenciaFuncionarioNG getPersistenciaFuncionarioAD();
+     public IPersistenciaFuncionarioAD getPersistenciaFuncionarioAD();
     
 }
