@@ -26,7 +26,7 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
     
     //string SQL da consultas das empresas no banco AlterData
     
-    private static final String SQL_PESQUISARTODOS = "";
+    private static final String SQL_PESQUISARTODOS = "SELECT * FROM wphd.empresa order by cdempresa asc";
     
     private static final String SQL_PESQUISAREMPRESA_ID = "";
     
@@ -37,7 +37,7 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
     //url para conexão com o bando AD
     //jdbc:sqlserver://servidor:porta;databaseName=banco;user=usuario;password=senha;"
     
-    private final String urlAD = "jdbc:sqlserver://"+jdbc.lerServidor("AD")+":"+jdbc.lerPorta("AD")+";databaseName=ad;user="+jdbc.lerUsuario("AD")+";password="+jdbc.lerSenha("AD")+";"; 
+    private final String urlAD = "jdbc:postgresql://"+jdbc.lerServidor("AD")+":"+jdbc.lerPorta("AD")+"/"+jdbc.lerDatabase("AD")+","+jdbc.lerUsuario("AD")+","+jdbc.lerSenha("AD")+";"; 
     
     
     
