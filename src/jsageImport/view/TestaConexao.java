@@ -7,7 +7,7 @@ package jsageImport.view;
 
 import javax.swing.JOptionPane;
 import jsageImport.controler.ControlerFuncionarioNG;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 
 
 /**
@@ -153,12 +153,12 @@ public class TestaConexao extends javax.swing.JInternalFrame {
         ControlerFuncionarioNG control = new ControlerFuncionarioNG();
         try {
            if (jtfServidor.getText().equals("")||jtfBanco.getText().equals("")||jtfPorta.getText().equals("")||jtfUsuario.getText().equals("")||jpSenha.getText().equals("")){
-               throw new JsageImportException("Todos os campos precisam ser preenchidos!");               
+               throw new JSageImportException("Todos os campos precisam ser preenchidos!");               
            }else {
                //jlStatus.setText(control.testarConexao(jtfServidor.getText(), jtfBanco.getText(), jtfPorta.getText(), jtfUsuario.getText(), jpSenha.getText()));           
                jlStatus.setVisible(true);
            }
-        } catch (JsageImportException ex) {
+        } catch (JSageImportException ex) {
             System.out.println("Erro na execução do Teste: " + ex);
         }
     }//GEN-LAST:event_jbConectarActionPerformed

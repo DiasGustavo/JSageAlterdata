@@ -4,7 +4,7 @@
 package jsageImport.controler;
 
 import java.util.List;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioNG;
 import jsageImport.persistencia.GerenciadorPersistenciaNG;
 import jsageImport.persistencia.IGerenciadorPersistenciaNG;
@@ -20,7 +20,7 @@ public class ControlerFuncionarioNG {
         
     }
     
-    public boolean testarConexao (String server, String bd, String port, String user, String password) throws JsageImportException{
+    public boolean testarConexao (String server, String bd, String port, String user, String password) throws JSageImportException{
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionario = gerenteP.getPersistenciaFuncionario();
         boolean resultado = false;
@@ -30,7 +30,7 @@ public class ControlerFuncionarioNG {
         return resultado;
     }
     
-    public List pesquisarTodos () throws JsageImportException{
+    public List pesquisarTodos () throws JSageImportException{
         List listaFun;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionario = gerenteP.getPersistenciaFuncionario();
@@ -39,7 +39,7 @@ public class ControlerFuncionarioNG {
         return listaFun;
     }
     
-    public List pesquisarId (int id) throws JsageImportException{
+    public List pesquisarId (int id) throws JSageImportException{
         List listaEmp;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PEmpresa = gerenteP.getPersistenciaFuncionario();
@@ -48,7 +48,7 @@ public class ControlerFuncionarioNG {
         return listaEmp;
     }
     
-    public List listarFuncionarios (int idpessoa) throws JsageImportException{
+    public List listarFuncionarios (int idpessoa) throws JSageImportException{
         List listaFun;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionarios = gerenteP.getPersistenciaFuncionario();
@@ -57,7 +57,7 @@ public class ControlerFuncionarioNG {
         return listaFun;
     }
     
-    public List listarDependentes (int idpessoa) throws JsageImportException{
+    public List listarDependentes (int idpessoa) throws JSageImportException{
         List listaFun;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionarios = gerenteP.getPersistenciaFuncionario();
@@ -66,7 +66,7 @@ public class ControlerFuncionarioNG {
         return listaFun;
     }
     
-    public List listarPai (int idpessoa) throws JsageImportException{
+    public List listarPai (int idpessoa) throws JSageImportException{
         List listaFun;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionarios = gerenteP.getPersistenciaFuncionario();
@@ -75,7 +75,7 @@ public class ControlerFuncionarioNG {
         return listaFun;
     }
     
-    public List listarMae (int idpessoa) throws JsageImportException{
+    public List listarMae (int idpessoa) throws JSageImportException{
         List listaFun;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionarios = gerenteP.getPersistenciaFuncionario();
@@ -84,7 +84,7 @@ public class ControlerFuncionarioNG {
         return listaFun;
     }
     
-    public List listarDadosFuncionais (int idpessoa) throws JsageImportException{
+    public List listarDadosFuncionais (int idpessoa) throws JSageImportException{
         List listaFun;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionarios = gerenteP.getPersistenciaFuncionario();
@@ -93,7 +93,7 @@ public class ControlerFuncionarioNG {
         return listaFun;
     }
     
-    public String ImportarFuncionarios(int idEmpresa, int idPessoa, String cpf)throws JsageImportException{
+    public String ImportarFuncionarios(int idEmpresa, int idPessoa, String cpf)throws JSageImportException{
         String funcionario = "";
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionario = gerenteP.getPersistenciaFuncionario();
@@ -101,7 +101,7 @@ public class ControlerFuncionarioNG {
         return funcionario;
     }
     
-    public int sizeArrayImport ()throws JsageImportException{
+    public int sizeArrayImport ()throws JSageImportException{
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaFuncionarioNG PFuncionario = gerenteP.getPersistenciaFuncionario();
         return PFuncionario.SizeImport();

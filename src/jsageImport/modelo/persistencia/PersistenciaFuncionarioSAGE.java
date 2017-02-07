@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.DadosFuncionaisNG;
 import jsageImport.modelo.dominio.DadosFuncionario;
 import jsageImport.modelo.dominio.DependenteNG;
@@ -138,10 +138,10 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
    
     
     @Override
-    public void gravarFuncionario (int cdEmpresa, DadosFuncionario pf, DadosFuncionaisNG fun) throws JsageImportException{
+    public void gravarFuncionario (int cdEmpresa, DadosFuncionario pf, DadosFuncionaisNG fun) throws JSageImportException{
         if (pf == null){
             String mensagem = "Não foi informada o Funcionario para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }        
         Connection con = null;
         PreparedStatement stmt = null;
@@ -197,14 +197,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o Funcionario " + pf.getIdPessoa() + " no SAGE.");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());
+            throw new JSageImportException(msg.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
 
     @Override
-    public void gravarFuncao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JsageImportException{
+    public void gravarFuncao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
          
@@ -225,14 +225,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir a Função do Funcionário: " + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());
+            throw new JSageImportException(msg.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarLotacao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JsageImportException{
+    public void gravarLotacao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JSageImportException{
               
         Connection con = null;
         PreparedStatement stmt = null;
@@ -256,17 +256,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir a lotação do Funcionário: " + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());
+            throw new JSageImportException(msg.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarSalario (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JsageImportException{
+    public void gravarSalario (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JSageImportException{
         if (df == null){
             String mensagem = "Não foi informada o funcionario para importar o salario";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -301,17 +301,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o salário do Funcionário: " + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());
+            throw new JSageImportException(msg.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
         
     @Override
-    public void gravarColaborador (int cdEmpresa, int cdFuncionario, DadosFuncionario df) throws JsageImportException{
+    public void gravarColaborador (int cdEmpresa, int cdFuncionario, DadosFuncionario df) throws JSageImportException{
         if (df == null){
             String mensagem = "Não foi informada o colaborador";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -330,17 +330,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o colaborador: " + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());
+            throw new JSageImportException(msg.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarDocumentos (int cdFuncionario, int cdEmpresa, DadosFuncionario pf) throws JsageImportException{
+    public void gravarDocumentos (int cdFuncionario, int cdEmpresa, DadosFuncionario pf) throws JSageImportException{
         if (pf == null || cdFuncionario == 0 || cdEmpresa == 0){
             String mensagem = "Não foi informada os documentos para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -401,17 +401,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir os documentos do Funcionário." + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());
+            throw new JSageImportException(msg.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarDadosFuncionais (int cdEmpresa, int cdFuncionario, DadosFuncionaisNG df, DadosFuncionario fun) throws JsageImportException{
+    public void gravarDadosFuncionais (int cdEmpresa, int cdFuncionario, DadosFuncionaisNG df, DadosFuncionario fun) throws JSageImportException{
         if (df == null && fun == null){
             String mensagem = "Não foi informada o dependente para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -512,17 +512,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir os dados funcionais do Funcionário: " + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());
+            throw new JSageImportException(msg.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarDependentes (int cdFuncionario, int cdEmpresa, DependenteNG dep) throws JsageImportException{
+    public void gravarDependentes (int cdFuncionario, int cdEmpresa, DependenteNG dep) throws JSageImportException{
         if (dep == null || cdFuncionario == 0 || cdEmpresa == 0){
             String mensagem = "Não foi informada o dependente para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -552,17 +552,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir os dependentes do Funcionário." + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarFerias (int cdFuncionario,int cdEmpresa, FeriasNG ferias) throws JsageImportException{
+    public void gravarFerias (int cdFuncionario,int cdEmpresa, FeriasNG ferias) throws JSageImportException{
         if (ferias == null || cdFuncionario == 0 || cdEmpresa == 0){
             String mensagem = "Não foi informada os dados de ferias da empresa para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -599,17 +599,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir as férias do Funcionário." + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarFunEspecifico (int cdFuncionario, int cdEmpresa) throws JsageImportException{
+    public void gravarFunEspecifico (int cdFuncionario, int cdEmpresa) throws JSageImportException{
         if (cdFuncionario == 0 || cdEmpresa == 0){
             String mensagem = "Não foi informada os dados de Específico da empresa para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -626,17 +626,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir os dados específicos do Funcionário." + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarControleESocial (int cdEmpresa, int cdFuncionario) throws JsageImportException{
+    public void gravarControleESocial (int cdEmpresa, int cdFuncionario) throws JSageImportException{
         if ( cdFuncionario == 0 || cdEmpresa == 0){
             String mensagem = "Não foi informada os dados do esocial da empresa para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -663,17 +663,17 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o controle do esocial do Funcionário." + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarControleCamposESocial (int cdEmpresa, int cdFuncionario) throws JsageImportException{
+    public void gravarControleCamposESocial (int cdEmpresa, int cdFuncionario) throws JSageImportException{
         if ( cdFuncionario == 0 || cdEmpresa == 0){
             String mensagem = "Não foi informada os dados do controle campos esocial da empresa para importar";
-            throw new JsageImportException(mensagem);
+            throw new JSageImportException(mensagem);
         }
         
         Connection con = null;
@@ -698,14 +698,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir os controles dos campos do esocial do Funcionário." + cdFuncionario);
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-     public void gravarMovEvento (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario) throws JsageImportException {
+     public void gravarMovEvento (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario) throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -729,14 +729,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o MovEvento na Empresa: ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
      }
      
     @Override
-     public void gravarProcBase (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario, DadosFuncionaisNG dadosFuncionais) throws JsageImportException {
+     public void gravarProcBase (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario, DadosFuncionaisNG dadosFuncionais) throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -776,14 +776,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o ProcBase na Empresa: ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
      }
      
     @Override
-     public void gravarProcEvento (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario) throws JsageImportException{
+     public void gravarProcEvento (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -812,7 +812,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o ProcEvento da Empresa: ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
@@ -820,7 +820,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
      }
      
     @Override
-     public void gravarProcImposto (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario) throws JsageImportException{
+     public void gravarProcImposto (MovimentacaoNG movimentacao, int cdEmpresa, int cdFuncionario) throws JSageImportException{
          Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -851,14 +851,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o ProcImposto da Empresa: ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
      }
      
     @Override
-    public void gravarPlanoSaude (PlanoSaudeNG plano) throws JsageImportException{
+    public void gravarPlanoSaude (PlanoSaudeNG plano) throws JSageImportException{
          Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -879,14 +879,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o Plano de Saude ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
      }
     
     @Override
-    public void gravarPlanoSaudeGeral (PlanoSaudeNG plano, int cdEmpresa) throws JsageImportException{
+    public void gravarPlanoSaudeGeral (PlanoSaudeNG plano, int cdEmpresa) throws JSageImportException{
          Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -907,13 +907,13 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o Plano de Saude ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
      }
     @Override
-    public void gravarPlanoSaudeFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JsageImportException{
+    public void gravarPlanoSaudeFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JSageImportException{
          Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -937,7 +937,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o Plano de Saude ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
@@ -945,7 +945,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
     
     
     @Override
-    public void gravarPlanoSaudeMovFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JsageImportException{
+    public void gravarPlanoSaudeMovFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JSageImportException{
          Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -971,14 +971,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o Plano de Saude movimento do Funcionario. ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
     @Override
-    public void gravarPlanoSaudeProcFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JsageImportException{
+    public void gravarPlanoSaudeProcFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JSageImportException{
          Connection con = null;
         PreparedStatement stmt = null;  
         
@@ -1004,13 +1004,13 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         }catch (SQLException exc) {
             StringBuffer msg = new StringBuffer("Não foi possível incluir o Plano de Saude movimento do Funcionario. ");
             msg.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(msg.toString());            
+            throw new JSageImportException(msg.toString());            
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
     }
     
-    public List pesquisarTodos() throws JsageImportException {
+    public List pesquisarTodos() throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -1027,7 +1027,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -1036,10 +1036,10 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
      * Pesquisa se uma empresa existe no sage atraves do cnpj da empresa
      * @param cnpj
      * @return
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List pesquisaCNPJ(String cnpj) throws JsageImportException {
+    public List pesquisaCNPJ(String cnpj) throws JSageImportException {
         if (cnpj == null || cnpj.isEmpty()) {
             return recuperarEmpresas();
         }
@@ -1060,14 +1060,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da empresa de CNPJ: " + cnpj);
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
     @Override
-    public List pesquisaIDCNPJ(int id, String cnpj) throws JsageImportException {
+    public List pesquisaIDCNPJ(int id, String cnpj) throws JSageImportException {
         if (cnpj == null || cnpj.isEmpty()) {
             return recuperarEmpresas();
         }
@@ -1089,7 +1089,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da empresa de CNPJ: " + cnpj);
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1097,7 +1097,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
     
     
     @Override
-    public List pesquisaFuncionario(int idPessoa, int cdEmpresa, String cpf) throws JsageImportException {
+    public List pesquisaFuncionario(int idPessoa, int cdEmpresa, String cpf) throws JSageImportException {
         if (idPessoa == 0) {
             return recuperarEmpresas();
         }
@@ -1121,14 +1121,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível capturar os funcionários.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
     @Override
-    public List pesquisaFuncionarioNome( int cdEmpresa, String cpf) throws JsageImportException {
+    public List pesquisaFuncionarioNome( int cdEmpresa, String cpf) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -1150,14 +1150,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível capturar os funcionários.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
     @Override
-    public List pesquisaIdDependente (int cdFuncionario, int idDependente) throws JsageImportException{
+    public List pesquisaIdDependente (int cdFuncionario, int idDependente) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -1176,13 +1176,13 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Impossível consulta de dependentes duplicados.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
-    public List recuperarEmpresas() throws JsageImportException {
+    public List recuperarEmpresas() throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -1199,14 +1199,14 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta das Empresas.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
     @Override
-    public boolean testaConexaoSAGE (String server, String bd, String port, String user, String password) throws JsageImportException{
+    public boolean testaConexaoSAGE (String server, String bd, String port, String user, String password) throws JSageImportException{
         Connection con = null;
         boolean flag = false;
         con = GerenciadorConexao.getConnection(server, bd, port, user, password);
@@ -1217,7 +1217,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         return flag;
     }
     
-    private EmpresaSAGE criarEmpresaSAGE (ResultSet rs) throws JsageImportException{
+    private EmpresaSAGE criarEmpresaSAGE (ResultSet rs) throws JSageImportException{
         EmpresaSAGE emp = new EmpresaSAGE();
         try{
         emp.setCd_empresa(rs.getInt("cd_empresa"));
@@ -1286,12 +1286,12 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return emp;
     } 
     
-    private FuncionarioSAGE criarFuncionario (ResultSet rs) throws JsageImportException{
+    private FuncionarioSAGE criarFuncionario (ResultSet rs) throws JSageImportException{
         FuncionarioSAGE fun = new FuncionarioSAGE();
         try {
             fun.setNome(rs.getString("nome"));
@@ -1335,13 +1335,13 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do Funcionario.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         
         return fun;
     }
     
-    private DependenteSAGE criarDependente (ResultSet rs) throws JsageImportException{
+    private DependenteSAGE criarDependente (ResultSet rs) throws JSageImportException{
         DependenteSAGE dep = new DependenteSAGE();
         try{
             dep.setCdEmpresa(rs.getInt("cd_empresa"));
@@ -1364,7 +1364,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do Funcionario.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
     }  
 }

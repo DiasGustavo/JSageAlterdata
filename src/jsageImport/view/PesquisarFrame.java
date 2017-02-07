@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jsageImport.controler.ControlerFuncionarioNG;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.FuncionarioSAGE;
 
 /**
@@ -27,7 +27,7 @@ public class PesquisarFrame extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-    public void exibirFuncionarios () throws JsageImportException{
+    public void exibirFuncionarios () throws JSageImportException{
         ControlerFuncionarioNG control = new ControlerFuncionarioNG();
         // O metodo pesquisarTodos retorna um list
         this.funcionarios = control.pesquisarTodos();
@@ -149,7 +149,7 @@ public class PesquisarFrame extends javax.swing.JInternalFrame {
     private void jbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarActionPerformed
         try {
             exibirFuncionarios();
-        } catch (JsageImportException ex) {
+        } catch (JSageImportException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + ex.getMessage());
             JOptionPane.showMessageDialog(null, mensagem);

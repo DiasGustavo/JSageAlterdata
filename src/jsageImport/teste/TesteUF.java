@@ -5,7 +5,7 @@
  */
 package jsageImport.teste;
 
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.persistencia.TratamentoDados;
 
 /**
@@ -14,7 +14,7 @@ import jsageImport.modelo.persistencia.TratamentoDados;
  */
 public class TesteUF {
        
-    public static void main(String args []) throws JsageImportException{
+    public static void main(String args []) throws JSageImportException{
         TratamentoDados trataDados = new TratamentoDados();
         String orgaoRG = "SSP/PB";
         String orgaoRG_1 = "SSPPB";

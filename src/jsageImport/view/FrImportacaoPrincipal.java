@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jsageImport.controler.ControlerEmpresaNG;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.PessoaJuridica;
 
 /**
@@ -35,7 +35,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         
     }
     
-    public void exibirEmpresas () throws JsageImportException{
+    public void exibirEmpresas () throws JSageImportException{
         ControlerEmpresaNG control = new ControlerEmpresaNG();
         // O metodo pesquisarTodos retorna um list
         this.empresas = control.pesquisarEmpresas();
@@ -68,11 +68,11 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         }
     }
     
-    public PessoaJuridica getEmpresa() throws JsageImportException {
+    public PessoaJuridica getEmpresa() throws JSageImportException {
         PessoaJuridica pj = null;
         int linhaSelecionada = tFuncionarios.getSelectedRow();
         if (linhaSelecionada < 0) {
-            throw new JsageImportException("Não foi selecionado nenhuma Empresa");
+            throw new JSageImportException("Não foi selecionado nenhuma Empresa");
         }
         pj = (PessoaJuridica) this.empresas.get(linhaSelecionada);
         this.nomeEmpresa = pj.getNomeAbreviado();
@@ -81,13 +81,13 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         return pj;
     }
     
-    public List getEmpresasSelecionadas() throws JsageImportException {
+    public List getEmpresasSelecionadas() throws JSageImportException {
         ControlerEmpresaNG control = new ControlerEmpresaNG(); 
         List empresasSelecionadas = new ArrayList();
         PessoaJuridica pj = null;
         int [] linhasSelecionadas = tFuncionarios.getSelectedRows();
         if (linhasSelecionadas.length == 0) {
-            throw new JsageImportException("Não foi selecionado nenhuma Empresa");
+            throw new JSageImportException("Não foi selecionado nenhuma Empresa");
         }
         for (int i = 0; i < linhasSelecionadas.length; i++){
             pj = (PessoaJuridica) this.empresas.get(linhasSelecionadas[i]);
@@ -110,7 +110,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         }
         JOptionPane.showMessageDialog(null, mensagem, titulo, tipo);
     }
-    public void importarDados () throws JsageImportException{
+    public void importarDados () throws JSageImportException{
         ControlerEmpresaNG control = new ControlerEmpresaNG();        
         int empresa = this.idEmpresa;
         String cnpjEmpresa = this.cnpj;
@@ -119,7 +119,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         lStatus.setText("Status:");
     }
     
-    public void importarTodasEmpresas (int idEmpresa, String cnpj)throws JsageImportException{
+    public void importarTodasEmpresas (int idEmpresa, String cnpj)throws JSageImportException{
         ControlerEmpresaNG control = new ControlerEmpresaNG();
         control.ImportaTodasEmpresas(idEmpresa,cnpj);
     }
@@ -240,7 +240,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
     private void jbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarActionPerformed
         try {
             exibirEmpresas();
-        } catch (JsageImportException ex) {
+        } catch (JSageImportException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + ex.getMessage());
             JOptionPane.showMessageDialog(null, mensagem);
@@ -261,7 +261,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
             this.getParent().add(pjFun);
             pjFun.setVisible(true);
             
-        }catch (JsageImportException ex){
+        }catch (JSageImportException ex){
             //this.exibirMensagem(ex.getMessage(), "Mensagem de Erro", true);
         } 
     }//GEN-LAST:event_jbImportarActionPerformed
@@ -280,7 +280,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
             telaCarregando.setVisible(false);
             lStatus.setText("Status:");
             JOptionPane.showMessageDialog(null, "Empresas Selecionadas gravadas com sucesso!"); 
-        } catch (JsageImportException ex){
+        } catch (JSageImportException ex){
             JOptionPane.showMessageDialog(null, "Erro ao gravar as empresas selecionadas!"); 
         }
     }//GEN-LAST:event_jImportarEmpresasActionPerformed

@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import jsageImport.controler.ControlerFuncionarioNG;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.DadosFuncionaisNG;
 
 /**
@@ -26,7 +26,7 @@ public class FrMostraDependentes extends javax.swing.JInternalFrame {
     /**
      * Creates new form PesquisarFrame
      */
-    public FrMostraDependentes() throws JsageImportException {
+    public FrMostraDependentes() throws JSageImportException {
         initComponents();
         exibirFuncionarios();
     }
@@ -39,7 +39,7 @@ public class FrMostraDependentes extends javax.swing.JInternalFrame {
         this.nomeEmpresa = nome;
     }
     
-    public void exibirFuncionarios () throws JsageImportException{
+    public void exibirFuncionarios () throws JSageImportException{
         ControlerFuncionarioNG control = new ControlerFuncionarioNG();
         // O metodo pesquisarTodos retorna um list
         this.funcionarios = control.listarDadosFuncionais(3413);

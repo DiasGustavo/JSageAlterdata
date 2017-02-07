@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import jsageImport.controler.ControlerEmpresaSAGE;
 import jsageImport.controler.ControlerFuncionarioSAGE;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.CargoFun;
 import jsageImport.modelo.dominio.CentroCusto;
 import jsageImport.modelo.dominio.ContaBancaria;
@@ -117,10 +117,10 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
     /**
      * Pesquisa a lista de empresas presentes no banco de dados do banco NG
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List pesquisarTodos() throws JsageImportException {
+    public List pesquisarTodos() throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -137,7 +137,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos dados da empresa.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -145,10 +145,10 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
     /**
      * Recupera todas as empresas com suas informações cadastrais
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List recuperarEmpresas() throws JsageImportException {
+    public List recuperarEmpresas() throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -165,7 +165,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta das Empresas.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -173,9 +173,9 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
     /**
      * Retorna as empresas que possuem folha de pagamento no banco NGFOLHA
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    private List recuperarEmpresasComFun () throws JsageImportException {
+    private List recuperarEmpresasComFun () throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -192,13 +192,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta das Empresas no ng_folha.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
-    public List recuperarResponsavel (int idEmpresa) throws JsageImportException{
+    public List recuperarResponsavel (int idEmpresa) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -216,7 +216,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível recuperar o responsável.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -224,7 +224,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         
     }
     
-    public List recuperarSindicato () throws JsageImportException{
+    public List recuperarSindicato () throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -241,7 +241,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos dados do sindicato.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -250,10 +250,10 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
     /**
      * Recupera de uma empresa que possui folha de pagamento específica os seus dados cadastrais
      * @return
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List capturarInfoEmpresasComFun() throws JsageImportException {
+    public List capturarInfoEmpresasComFun() throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -274,7 +274,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
                     }
                 } 
             }else{
-                throw new JsageImportException("Não foi encontrado Empreasas!");
+                throw new JSageImportException("Não foi encontrado Empreasas!");
             }
                         
             
@@ -282,13 +282,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
-    private List recuperarCargoFuncioario (int idempresa)throws JsageImportException{
+    private List recuperarCargoFuncioario (int idempresa)throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -310,14 +310,14 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível recuperar o cargo do funcionário.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
         
     }
     
-    public List recuperarCentroCusto (int idempresa) throws JsageImportException{
+    public List recuperarCentroCusto (int idempresa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -340,7 +340,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível recuperar o centro custo da empresa.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -350,9 +350,9 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
     /**
      * Recuperar a id da empresa que é utilizado na configuração da folha
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    private List recuperarIdFolha (int id) throws JsageImportException {
+    private List recuperarIdFolha (int id) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -370,7 +370,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da id da empresa.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -379,9 +379,9 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
      * Retorna todas as informações de configuração da folha de uma empresa
      * @param id
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    public List capturarInfoEmpresasFolha(int id) throws JsageImportException {
+    public List capturarInfoEmpresasFolha(int id) throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -402,13 +402,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
                     }
                 } 
             }else{
-                throw new JsageImportException("Não foi encontrado Empreasas!");
+                throw new JSageImportException("Não foi encontrado Empreasas!");
             }           
             return listaEmpresaFolha;
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta das informações da folha da empresa.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -417,9 +417,9 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
      * 
      * @param id
      * @return
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    private List capturarInfoEmpresaTributacao (int id) throws JsageImportException {
+    private List capturarInfoEmpresaTributacao (int id) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -438,7 +438,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da forma da tributação da empresa.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -447,10 +447,10 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
      * Pesquisa as informações de uma empresa específica através do seu cnpj
      * @param cnpj
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List pesquisarCnpj(int idEmpresa, String cnpj) throws JsageImportException {
+    public List pesquisarCnpj(int idEmpresa, String cnpj) throws JSageImportException {
         if (cnpj == null || cnpj.isEmpty()) {
             return recuperarEmpresas();
         }
@@ -473,14 +473,14 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do CNPJ.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
     @Override
-    public List pesquisarEmpresaPorID(int idEmpresa) throws JsageImportException {
+    public List pesquisarEmpresaPorID(int idEmpresa) throws JSageImportException {
                 
         Connection con = null;
         PreparedStatement stmt = null;
@@ -499,13 +499,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do CNPJ.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
-    private List recuperarPorteEmpresa (int id) throws JsageImportException {
+    private List recuperarPorteEmpresa (int id) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -524,12 +524,12 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do porte da Empresa.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
-    private List recuperarCnaeEmpresa (int id) throws JsageImportException {
+    private List recuperarCnaeEmpresa (int id) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -548,13 +548,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do CNAE da Empresa.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
-    private List recuperarBanco () throws JsageImportException{
+    private List recuperarBanco () throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -577,14 +577,14 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a recuperação do Banco.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
     @Override
-    public List recuperarAgenciaNG () throws JsageImportException{
+    public List recuperarAgenciaNG () throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -616,14 +616,14 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a Agência do Banco.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
         
     }
     
-    private int recuperarIdContador (int idEmpresa)throws JsageImportException{
+    private int recuperarIdContador (int idEmpresa)throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -644,14 +644,14 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível recuparar a ID do contador.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
         
     }
     
-    public List recuperarContadorPFisica (int idEmpresa)throws JsageImportException{
+    public List recuperarContadorPFisica (int idEmpresa)throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -674,13 +674,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a Agência do Banco.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
-    public List recuperarContadorPJuridica (int idEmpresa) throws JsageImportException{
+    public List recuperarContadorPJuridica (int idEmpresa) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;        
@@ -703,7 +703,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a Agência do Banco.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -713,10 +713,10 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
      * Realiza a importação de uma empresa para o banco de dados do SAGE
      * @param idEmpresa
      * @param cnpj
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public void ImportaEmpresas(int idEmpresa, String cnpj) throws JsageImportException {
+    public void ImportaEmpresas(int idEmpresa, String cnpj) throws JSageImportException {
         ControlerFuncionarioSAGE controlFunSAGE = new ControlerFuncionarioSAGE();
         ControlerEmpresaSAGE controlEmpSAGE = new ControlerEmpresaSAGE();
         List listaEmpresaSAGE = controlFunSAGE.pesquisarCNPJ(cnpj);
@@ -864,14 +864,14 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
                 
                 JOptionPane.showMessageDialog(null, "Empresa Gravada com Sucesso!");
             }else if (reply == JOptionPane.NO_OPTION){
-                throw new JsageImportException("Primeiro importe a empresa para depois importar os Funcionários.");
+                throw new JSageImportException("Primeiro importe a empresa para depois importar os Funcionários.");
             }
                        
         }
     }
     
     @Override
-    public void ImportaTodasEmpresas(int idEmpresa, String cnpj) throws JsageImportException {
+    public void ImportaTodasEmpresas(int idEmpresa, String cnpj) throws JSageImportException {
         ControlerFuncionarioSAGE controlFunSAGE = new ControlerFuncionarioSAGE();
         ControlerEmpresaSAGE controlEmpSAGE = new ControlerEmpresaSAGE();
         List listaEmpresaSAGE = controlFunSAGE.pesquisarIDCNPJ(idEmpresa,cnpj);//verifica se a empresa existe no sage
@@ -1025,9 +1025,9 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
      * Cria uma pessoa juridica que é a reprensentação de empresa no NG
      * @param ResultSet
      * @return PessoaJuridica
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    private PessoaJuridica criarEmpresaNG(ResultSet rs) throws JsageImportException{
+    private PessoaJuridica criarEmpresaNG(ResultSet rs) throws JSageImportException{
         PessoaJuridica pj = new PessoaJuridica();
         try{
             /* Dados de uma pessoa comum*/
@@ -1087,7 +1087,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Pessoa Jurídica.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return pj;
     }
@@ -1095,9 +1095,9 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
      * Configura o objeto com os dados da folha de pagamento
      * @param ResulSet
      * @return EmpresaFolha
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    private EmpresaFolha criarEmpresaFolhaNG (ResultSet rs) throws JsageImportException{
+    private EmpresaFolha criarEmpresaFolhaNG (ResultSet rs) throws JSageImportException{
         EmpresaFolha empFolha = new EmpresaFolha();
         try{
             empFolha.setIddadosempresafolha(rs.getInt("iddadosempresafolha"));
@@ -1288,13 +1288,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Folha da Empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         
         return empFolha;
     }
     
-    private EmpresaTributacao criarEmpresaTributacao (ResultSet rs)throws JsageImportException{
+    private EmpresaTributacao criarEmpresaTributacao (ResultSet rs)throws JSageImportException{
         EmpresaTributacao empTrib = new EmpresaTributacao ();
         
         try {
@@ -1316,13 +1316,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException ex) {
              StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Tributação da empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return empTrib;
         
     } 
     
-    private ContaBancaria criarAgenciaNG (ResultSet rs) throws JsageImportException{
+    private ContaBancaria criarAgenciaNG (ResultSet rs) throws JSageImportException{
         ContaBancaria conta = new ContaBancaria();
         
         
@@ -1354,14 +1354,14 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (Exception ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da agência da empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         
         return conta;
         
     }
     
-    private EmpresaTributacao criarEmpresaCnae (ResultSet rs)throws JsageImportException{
+    private EmpresaTributacao criarEmpresaCnae (ResultSet rs)throws JSageImportException{
         EmpresaTributacao empTrib = new EmpresaTributacao ();
         
         try {
@@ -1374,13 +1374,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException ex) {
              StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do CNAE da empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return empTrib;
         
     }
     
-    private PorteEmpresa criarPorteEmpresa (ResultSet rs) throws JsageImportException{
+    private PorteEmpresa criarPorteEmpresa (ResultSet rs) throws JSageImportException{
         PorteEmpresa empPorte = new PorteEmpresa();
         try {
             empPorte.setIdporteempresa(rs.getInt("idporteempresa"));
@@ -1392,12 +1392,12 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException ex) {
              StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do porte da empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return empPorte;
     }
     
-    private CargoFun criarCargo (ResultSet rs) throws JsageImportException {
+    private CargoFun criarCargo (ResultSet rs) throws JSageImportException {
         CargoFun cargofun = new CargoFun();
         
          try {
@@ -1429,7 +1429,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         } catch (SQLException ex) {
              StringBuffer mensagem = new StringBuffer("Não foi possível obter o cargo do funcionário da empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return cargofun;
         
@@ -1437,7 +1437,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         
     }
     
-    private CentroCusto criarCentroCusto (ResultSet rs)throws JsageImportException {
+    private CentroCusto criarCentroCusto (ResultSet rs)throws JSageImportException {
         CentroCusto centrocusto = new CentroCusto();
         
         try{
@@ -1451,13 +1451,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException ex) {
              StringBuffer mensagem = new StringBuffer("Não foi possível obter o centro custo da empresa.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return centrocusto;
         
     }
     
-    private Sindicato criarSindicato (ResultSet rs) throws JsageImportException{
+    private Sindicato criarSindicato (ResultSet rs) throws JSageImportException{
         Sindicato sind = new Sindicato();
         
         try{
@@ -1489,13 +1489,13 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do sindicato do Funcionário.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return sind;        
         
     }
      
-    private ContadorPFisica criarContador (ResultSet rs) throws JsageImportException{
+    private ContadorPFisica criarContador (ResultSet rs) throws JSageImportException{
         ContadorPFisica contador = new ContadorPFisica();
         try{
             contador.setIdPessoa(rs.getInt("idpessoa"));
@@ -1518,12 +1518,12 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do sindicato do Funcionário.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return contador;
     }
     
-    private ContadorPJuridica criarContadorPJuridica (ResultSet rs) throws JsageImportException{
+    private ContadorPJuridica criarContadorPJuridica (ResultSet rs) throws JSageImportException{
         ContadorPJuridica contador = new ContadorPJuridica();
         try{
             contador.setIdPessoa(rs.getInt("idpessoa"));
@@ -1545,12 +1545,12 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do contador pessoa Juridica.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return contador;
     }
     
-    private ResponsavelPJuridica criarResponsavelPJuridica (ResultSet rs) throws JsageImportException{
+    private ResponsavelPJuridica criarResponsavelPJuridica (ResultSet rs) throws JSageImportException{
         ResponsavelPJuridica responsavelJurudica = new ResponsavelPJuridica();
         
         try{
@@ -1584,7 +1584,7 @@ public class PersistenciaEmpresaNG implements IPersistenciaEmpresaNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do responsavel Juridico.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return responsavelJurudica;
         

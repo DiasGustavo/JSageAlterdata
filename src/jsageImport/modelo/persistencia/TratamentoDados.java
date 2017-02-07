@@ -16,7 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.swing.text.MaskFormatter;
 import jsageImport.controler.ControlerFuncionarioNG;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.MovimentacaoNG;
 import jsageImport.modelo.dominio.PessoaFisica;
 
@@ -57,7 +57,7 @@ public class TratamentoDados {
     private final String urlNGDOMINIO = "jdbc:sqlserver://"+jdbc.lerServidor("NG")+":"+jdbc.lerPorta("NG")+";databaseName=ng_dominio;user="+jdbc.lerUsuario("NG")+";password="+jdbc.lerSenha("NG")+";"; 
     private final String urlSAGE = "jdbc:sqlserver://"+jdbc.lerServidor("SAGE")+":"+jdbc.lerPorta("SAGE")+";"+jdbc.lerDatabase("SAGE")+";user="+jdbc.lerUsuario("SAGE")+";password="+jdbc.lerSenha("SAGE")+";"; 
     
-    public String recupararCPFTitular (int idPessoa)throws JsageImportException{
+    public String recupararCPFTitular (int idPessoa)throws JSageImportException{
         String cpf = "";
         
         Connection con = null;
@@ -83,7 +83,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da cpf.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -140,7 +140,7 @@ public class TratamentoDados {
         return valor;
     } 
     
-    public String convertIntToString (int tipo) throws JsageImportException{
+    public String convertIntToString (int tipo) throws JSageImportException{
         String lTipo = null;
         if (tipo !=0){
             lTipo = Integer.toString(tipo);
@@ -151,7 +151,7 @@ public class TratamentoDados {
         return lTipo;
     }
     
-    public short convertStringToShort (String zona) throws JsageImportException{
+    public short convertStringToShort (String zona) throws JSageImportException{
         short s= 0;
         if (zona != null){
             String g = zona;     
@@ -159,7 +159,7 @@ public class TratamentoDados {
         }        
         return s;
     }
-    public int trataID (int id) throws JsageImportException{
+    public int trataID (int id) throws JSageImportException{
         int idTratada = id;
         
         if (id > 9999){
@@ -167,7 +167,7 @@ public class TratamentoDados {
         }
         return idTratada;
     }
-    public int recuperarParentescoIrrf (int pat) throws JsageImportException{
+    public int recuperarParentescoIrrf (int pat) throws JSageImportException{
         int parent = 0;
         switch (pat){
             case 1:
@@ -202,9 +202,9 @@ public class TratamentoDados {
      * transfere as ids da verba do ng para a do sage
      * @param idVerba
      * @return int
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    public int recuperarLancamentoFolha (int idVerba) throws JsageImportException{
+    public int recuperarLancamentoFolha (int idVerba) throws JSageImportException{
         int lancamento = 0;
         switch (idVerba){
             case -2:
@@ -313,7 +313,7 @@ public class TratamentoDados {
     
     }
     
-    public double trataReferencia (MovimentacaoNG movimentacao) throws JsageImportException{
+    public double trataReferencia (MovimentacaoNG movimentacao) throws JSageImportException{
         double refTratada = 0;
         
         switch (movimentacao.getIdverba()){
@@ -376,7 +376,7 @@ public class TratamentoDados {
         }
         return refTratada;
     }
-     public double trataValorProcEvento (MovimentacaoNG movimentacao) throws JsageImportException{
+     public double trataValorProcEvento (MovimentacaoNG movimentacao) throws JSageImportException{
          double valorTratado = 0;
          
          switch (movimentacao.getIdverba()){
@@ -401,7 +401,7 @@ public class TratamentoDados {
          return valorTratado;
      }
     
-    public int recuperarEsocial (int esocial) throws JsageImportException{
+    public int recuperarEsocial (int esocial) throws JSageImportException{
         int eso = 0;
         if (esocial == 1){
             eso = 1;
@@ -415,7 +415,7 @@ public class TratamentoDados {
         return eso;
     }
     
-    public int recuperarVinculo (int vinculo) throws JsageImportException{
+    public int recuperarVinculo (int vinculo) throws JSageImportException{
         int vin = 10;
         if (vinculo == 18){
             vin = 10;
@@ -473,7 +473,7 @@ public class TratamentoDados {
         }
         return vin;
     }
-    public short recuperarEstadoCivil (int estado) throws JsageImportException{
+    public short recuperarEstadoCivil (int estado) throws JSageImportException{
         short resultado = 0;
         if (estado == 1){
             resultado = 2;
@@ -496,7 +496,7 @@ public class TratamentoDados {
         return resultado;
     }
     
-    public String recuperarRaca (int raca) throws JsageImportException{
+    public String recuperarRaca (int raca) throws JSageImportException{
         String ra ="";
         if(raca == 1){
             ra = "1";
@@ -519,7 +519,7 @@ public class TratamentoDados {
         return ra;
     }
     
-    public String recuperaTipoSalario (int tipo) throws JsageImportException {
+    public String recuperaTipoSalario (int tipo) throws JSageImportException {
         String tipoSalario = "M";
         if( tipo == 1 ){
             tipoSalario = "M";
@@ -541,7 +541,7 @@ public class TratamentoDados {
         return vlfixo;
     }
     
-    public Timestamp trataData (Timestamp dt) throws JsageImportException{
+    public Timestamp trataData (Timestamp dt) throws JSageImportException{
         Timestamp data = dt;
         if (dt == null){
             data = this.horaAtual();
@@ -549,7 +549,7 @@ public class TratamentoDados {
         return data;
     }
     
-    public String recuperarAdmissaoCaged (int idTipoAdmissao) throws JsageImportException {
+    public String recuperarAdmissaoCaged (int idTipoAdmissao) throws JSageImportException {
         String admissao = "";
         
         Connection con = null;
@@ -569,7 +569,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da admissao caged.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -577,7 +577,7 @@ public class TratamentoDados {
         return admissao;
     }
     
-    public int trataTipoAdmissaoCaged ( String caged) throws JsageImportException{
+    public int trataTipoAdmissaoCaged ( String caged) throws JSageImportException{
         int tipoAd = 10;
         if (caged.equals("1")){
             tipoAd = 10;
@@ -598,7 +598,7 @@ public class TratamentoDados {
         return tipoAd;
     }
     
-    public String recuperarCnaeEmpresa (int idcnae) throws JsageImportException {
+    public String recuperarCnaeEmpresa (int idcnae) throws JSageImportException {
         String cnae = "";
         
         Connection con = null;
@@ -621,14 +621,14 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do cnae.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
         return cnae;
     }
     
-    public short recuperarFormaTributacao (int tributacao) throws JsageImportException{
+    public short recuperarFormaTributacao (int tributacao) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -674,14 +674,14 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da forma tributação.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
                
     }
     
-    public String recuperarNaturezaJuridica (int natureza)throws JsageImportException{
+    public String recuperarNaturezaJuridica (int natureza)throws JSageImportException{
         String cid = "";
         if (natureza == 0) {
             return cid;
@@ -703,7 +703,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da natureza juridica.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -711,7 +711,7 @@ public class TratamentoDados {
         return cid;
     }
     
-    public String recuperarTipoDeficiente(int deficiencia)throws JsageImportException{
+    public String recuperarTipoDeficiente(int deficiencia)throws JSageImportException{
         String cid = "";
         if (deficiencia == 0) {
             return cid;
@@ -731,7 +731,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -743,9 +743,9 @@ public class TratamentoDados {
      * Converte o int que representa a cidade para String
      * @param cidade
      * @return String
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    public String recuperarCidade(int cidade)throws JsageImportException{
+    public String recuperarCidade(int cidade)throws JSageImportException{
         String cid = "";
         if (cidade == 0) {
             return cid;
@@ -767,7 +767,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível recuperar a cidade.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -786,7 +786,7 @@ public class TratamentoDados {
         return cert;
     }
     
-    public String recuperarUF (int iduf) throws JsageImportException{
+    public String recuperarUF (int iduf) throws JSageImportException{
         String est = "";
         if (iduf == 0) {
             return est;
@@ -808,7 +808,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do estado.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -816,7 +816,7 @@ public class TratamentoDados {
         return est;
     }
     
-    public int recuperarIdUF(int cidade)throws JsageImportException{
+    public int recuperarIdUF(int cidade)throws JSageImportException{
         int cid = 0;
         if (cidade == 0) {
             return cid;
@@ -838,7 +838,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível recuperar a cidade.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }        
@@ -848,9 +848,9 @@ public class TratamentoDados {
      * Retorna a uf do municipio através do código do município
      * @param idMunicipio
      * @return String
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    public String recuperarUFMunicipio (int idMunicipio) throws JsageImportException{
+    public String recuperarUFMunicipio (int idMunicipio) throws JSageImportException{
         String est = "";
         int iduf;
         if (idMunicipio == 0) {
@@ -876,7 +876,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do estado.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -884,7 +884,7 @@ public class TratamentoDados {
         return est;
     }
     
-    public int recuperarCodigoIBGE (int idMunicipio) throws JsageImportException{
+    public int recuperarCodigoIBGE (int idMunicipio) throws JSageImportException{
         int codigo= 0;
         if (idMunicipio == 0) {
             return codigo;
@@ -905,7 +905,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do código do ibge");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -913,7 +913,7 @@ public class TratamentoDados {
         return codigo;
     }
     
-    public String recuperarEstado (int iduf) throws JsageImportException{
+    public String recuperarEstado (int iduf) throws JSageImportException{
         String est = "";
         if (iduf == 0) {
             return est;
@@ -935,7 +935,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível recuperar o Estado.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -944,7 +944,7 @@ public class TratamentoDados {
         }
         return est;
     }
-    public int tratarNrEndereco (String nr) throws JsageImportException{
+    public int tratarNrEndereco (String nr) throws JSageImportException{
         int nri = 0;
         
         try{
@@ -978,7 +978,7 @@ public class TratamentoDados {
         return nri;                
     }
     
-    public String recuperarComplemento (String complemento) throws JsageImportException{
+    public String recuperarComplemento (String complemento) throws JSageImportException{
         String ap= "";
         if (complemento != null){
             if(complemento.length() > 15){
@@ -990,7 +990,7 @@ public class TratamentoDados {
         return ap;
     }
     
-    public String recuperarBairro (String bairro) throws JsageImportException{
+    public String recuperarBairro (String bairro) throws JSageImportException{
         String ap= "";
         if (bairro != null){
             if(bairro.length() > 15){
@@ -1031,7 +1031,7 @@ public class TratamentoDados {
        
     }
     
-    public Timestamp horaAtual() throws JsageImportException{
+    public Timestamp horaAtual() throws JSageImportException{
         Calendar calendar = Calendar.getInstance();
         java.util.Date now = calendar.getTime();
         java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
@@ -1039,20 +1039,20 @@ public class TratamentoDados {
         return currentTimestamp;
     }
     
-    public Timestamp DataFimSistema () throws JsageImportException{
+    public Timestamp DataFimSistema () throws JSageImportException{
         String data = "2100-12-31 08:00:00";
         Timestamp tempo = Timestamp.valueOf(data);
         
         return tempo;
     }
-    public Timestamp criarData (String data) throws JsageImportException{
+    public Timestamp criarData (String data) throws JSageImportException{
         String date = data+" 08:00:00";
         Timestamp tempo = Timestamp.valueOf(date);
         
         return tempo;
     }
     
-    public String recuperaApelido (String apelido) throws JsageImportException{
+    public String recuperaApelido (String apelido) throws JSageImportException{
         String ap= "";
         if (apelido != null){
             if (apelido.length() > 10){
@@ -1064,7 +1064,7 @@ public class TratamentoDados {
         
         return ap;
     }
-    public String recuperarPai (int idPessoa) throws JsageImportException{
+    public String recuperarPai (int idPessoa) throws JSageImportException{
         String nomePai;
         ControlerFuncionarioNG fun = new ControlerFuncionarioNG();
         List pai = fun.listarPai(idPessoa);
@@ -1079,7 +1079,7 @@ public class TratamentoDados {
         
     }
     
-    public String recuperarMae (int idPessoa) throws JsageImportException{
+    public String recuperarMae (int idPessoa) throws JSageImportException{
         String nomeMae;
         ControlerFuncionarioNG fun = new ControlerFuncionarioNG();
         List mae = fun.listarMae(idPessoa);
@@ -1093,7 +1093,7 @@ public class TratamentoDados {
         
     }
     
-    public int recuperarTituloEleitor(String titulo) throws JsageImportException{
+    public int recuperarTituloEleitor(String titulo) throws JSageImportException{
         
         int tituloEleitor = 0;
         if (titulo != null){
@@ -1105,7 +1105,7 @@ public class TratamentoDados {
         return tituloEleitor;
     }
    
-    public String recuperarCNH(int cnh) throws JsageImportException{
+    public String recuperarCNH(int cnh) throws JSageImportException{
        String categoria = "";
         if (cnh == 0) {
             return categoria;
@@ -1127,7 +1127,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da categoria da cnh.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1135,7 +1135,7 @@ public class TratamentoDados {
         return categoria;
     }
     
-    public String tratarOrgaoRG (String rg) throws JsageImportException{
+    public String tratarOrgaoRG (String rg) throws JSageImportException{
         String normalRG = "";
         if (rg != null){
             String stnr = rg;
@@ -1153,7 +1153,7 @@ public class TratamentoDados {
         return normalRG;
     }
     
-     public String tratarUFRG (String rg) throws JsageImportException{
+     public String tratarUFRG (String rg) throws JSageImportException{
         String normalRG = "";
         if (rg != null){
             String stnr = rg;
@@ -1172,7 +1172,7 @@ public class TratamentoDados {
         return normalRG;
     }
     
-    public String recuperarPIS (int idFuncionario)throws JsageImportException{
+    public String recuperarPIS (int idFuncionario)throws JSageImportException{
         String pis = "";
         if (idFuncionario == 0) {
             return pis;
@@ -1199,7 +1199,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do PIS.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1207,7 +1207,7 @@ public class TratamentoDados {
         return pis;
     }
     
-    public String recuperarAgencia (int idAgencia) throws JsageImportException {
+    public String recuperarAgencia (int idAgencia) throws JSageImportException {
         String admissao = "";
         
         Connection con = null;
@@ -1224,7 +1224,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da agencia.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1232,7 +1232,7 @@ public class TratamentoDados {
         return admissao;
     }
     
-    public String recuperarDVAgencia (int idAgencia) throws JsageImportException {
+    public String recuperarDVAgencia (int idAgencia) throws JSageImportException {
         String admissao = "";
         
         Connection con = null;
@@ -1249,7 +1249,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do dv da agência.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1257,7 +1257,7 @@ public class TratamentoDados {
         return admissao;
     }
     
-    public String recuperarBanco (int idBanco) throws JsageImportException {
+    public String recuperarBanco (int idBanco) throws JSageImportException {
         String admissao = "";
         
         Connection con = null;
@@ -1274,7 +1274,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do banco.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1283,7 +1283,7 @@ public class TratamentoDados {
     }
     
    
-    public String recuperarConta (int idPessoa) throws JsageImportException {
+    public String recuperarConta (int idPessoa) throws JSageImportException {
         String admissao = "";
         
         Connection con = null;
@@ -1300,7 +1300,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da da conta.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1308,7 +1308,7 @@ public class TratamentoDados {
         return admissao;
     }
     
-    public String recuperarDVConta (int idPessoa) throws JsageImportException {
+    public String recuperarDVConta (int idPessoa) throws JSageImportException {
         String admissao = "";
         
         Connection con = null;
@@ -1325,14 +1325,14 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta o dv da conta.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
         
         return admissao;
     }
-    public String recuperarCodigoCBO (int idCbo) throws JsageImportException{
+    public String recuperarCodigoCBO (int idCbo) throws JSageImportException{
         String cbo = "";
         
         Connection con = null;
@@ -1349,13 +1349,13 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do codido cbo do cargo da conta.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
         return cbo;
     }
-    public Timestamp trataDataVazia (Timestamp data) throws JsageImportException{
+    public Timestamp trataDataVazia (Timestamp data) throws JSageImportException{
         Timestamp dataReturn = null;
         if(data == null){
             dataReturn = horaAtual();
@@ -1365,7 +1365,7 @@ public class TratamentoDados {
         return dataReturn;
     }
 
-    public String converterSigla(String nomePessoa) throws JsageImportException {
+    public String converterSigla(String nomePessoa) throws JSageImportException {
         String strSigla = null;
         if (nomePessoa != null && nomePessoa.length() >= 20){
             strSigla = nomePessoa.substring(0, 19);
@@ -1397,7 +1397,7 @@ public class TratamentoDados {
         return strFormatada;
     }
 
-    int gerarIDSindicato() throws JsageImportException {
+    int gerarIDSindicato() throws JSageImportException {
         int id;
         
         Connection con = null;
@@ -1416,14 +1416,14 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do codido cbo do cargo da conta.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
         return id;
     }
 
-    public int gerarSequenciaESocial() throws JsageImportException {
+    public int gerarSequenciaESocial() throws JSageImportException {
          int id;
         
         Connection con = null;
@@ -1442,7 +1442,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível gerar a sequencia do ESocial conta.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1450,7 +1450,7 @@ public class TratamentoDados {
        
     }
     
-    public boolean pesquisarSindicato( String nomeSind ) throws JsageImportException {
+    public boolean pesquisarSindicato( String nomeSind ) throws JSageImportException {
         boolean sind = false;
         String nome = null;
         
@@ -1475,7 +1475,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível pesquisar o sindicato.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1494,7 +1494,7 @@ public class TratamentoDados {
         return valor;
     }
 
-    public int compararTimestamp(Timestamp data) throws JsageImportException {
+    public int compararTimestamp(Timestamp data) throws JSageImportException {
         int contribuicao = 0;
         if(data == null){
             contribuicao = 3;
@@ -1509,7 +1509,7 @@ public class TratamentoDados {
         return contribuicao;
     }
     
-    public boolean compararData(Timestamp dataAnt, Timestamp dataProx)throws JsageImportException{
+    public boolean compararData(Timestamp dataAnt, Timestamp dataProx)throws JSageImportException{
         boolean tag;
         //compara a dataprox com a anterior verificando se a prox é mais recente
         // se sim tag recebe true
@@ -1521,7 +1521,7 @@ public class TratamentoDados {
         return tag;
     }
 
-    public int pesquisarIDSindicatoSAGE (String nomeSindicato) throws JsageImportException{
+    public int pesquisarIDSindicatoSAGE (String nomeSindicato) throws JSageImportException{
         
         int idSindicato;
         
@@ -1554,14 +1554,14 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível pesquisar o sindicato.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
         return idSindicato;
     }
     
-    public int pesquisarIDSindicato(int iddadossindicato) throws JsageImportException {
+    public int pesquisarIDSindicato(int iddadossindicato) throws JSageImportException {
         String nomeSind = null; 
         int idSindicato;
         Connection con = null;
@@ -1585,14 +1585,14 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível pesquisar o sindicato.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
         return idSindicato;
     }
 
-    public boolean verificarPessoa(int id) throws JsageImportException {
+    public boolean verificarPessoa(int id) throws JSageImportException {
         boolean idPessoa = false;
         
         Connection con = null;
@@ -1612,7 +1612,7 @@ public class TratamentoDados {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível pesquisar o sindicato.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -1620,7 +1620,7 @@ public class TratamentoDados {
         return idPessoa;
     }
 
-    public int recuperarParentescoPrincipal( int codigoesocial, boolean independente, String sexo) throws JsageImportException{
+    public int recuperarParentescoPrincipal( int codigoesocial, boolean independente, String sexo) throws JSageImportException{
         int parent = 0;
             if ((sexo.equals("F")) && (independente == true)){
                 if (codigoesocial == 3 || codigoesocial == 2){

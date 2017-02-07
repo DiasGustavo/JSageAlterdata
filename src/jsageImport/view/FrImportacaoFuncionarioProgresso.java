@@ -14,7 +14,7 @@ import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import jsageImport.controler.ControlerFuncionarioNG;
 import jsageImport.controler.ControlerFuncionarioSAGE;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.EmpresaSAGE;
 import jsageImport.modelo.dominio.PessoaFisica;
 
@@ -55,7 +55,7 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
         this.nomeEmpresa = nome;
     }
     
-    public void exibirFuncionarios () throws JsageImportException{
+    public void exibirFuncionarios () throws JSageImportException{
         ControlerFuncionarioNG control = new ControlerFuncionarioNG();
         // O metodo pesquisarTodos retorna um list
         this.funcionarios = control.listarFuncionarios(this.idpj);
@@ -93,18 +93,18 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
         return resposta;
     }
     
-    public PessoaFisica getFuncionario() throws JsageImportException {
+    public PessoaFisica getFuncionario() throws JSageImportException {
         PessoaFisica pf = null;
         int linhaSelecionada = tFuncionarios.getSelectedRow();
         if (linhaSelecionada < 0) {
-            throw new JsageImportException("Não foi selecionado nenhuma Empresa");
+            throw new JSageImportException("Não foi selecionado nenhuma Empresa");
         }
         pf = (PessoaFisica) this.funcionarios.get(linhaSelecionada);
         
         return pf;
     }
     
-    public void importarDados () throws JsageImportException{
+    public void importarDados () throws JSageImportException{
             
             ControlerFuncionarioNG control = new ControlerFuncionarioNG();
             ControlerFuncionarioSAGE ctr = new ControlerFuncionarioSAGE();
@@ -160,7 +160,7 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
                             jlStatus.setText("Status: Concluído!");                       
                             telaCarregando.dispose();
                             JOptionPane.showMessageDialog(null, "Funcionarios Gravados com Sucesso!"); 
-                        } catch (JsageImportException ex) {
+                        } catch (JSageImportException ex) {
                             Logger.getLogger(FrImportacaoFuncionarioProgresso.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (InterruptedException ex){
                             
@@ -176,7 +176,7 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
         
     }
     
-    public void progresso(int max) throws JsageImportException{
+    public void progresso(int max) throws JSageImportException{
         
         final int numImages = max;
         SwingWorker worker = new SwingWorker() {
@@ -307,7 +307,7 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
         try {
             
             importarDados();
-        } catch (JsageImportException ex) {
+        } catch (JSageImportException ex) {
             Logger.getLogger(FrImportacaoFuncionarioProgresso.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbImportarActionPerformed

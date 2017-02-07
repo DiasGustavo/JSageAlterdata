@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import jsageImport.controler.ControlerFuncionarioSAGE;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.DadosFuncionaisNG;
 import jsageImport.modelo.dominio.DadosFuncionario;
 import jsageImport.modelo.dominio.DependenteNG;
@@ -112,7 +112,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
     
     
     @Override
-    public List pesquisarTodos() throws JsageImportException {
+    public List pesquisarTodos() throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -130,13 +130,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }    
        
-    public List recuperarEmpresas() throws JsageImportException {
+    public List recuperarEmpresas() throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -154,13 +154,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta das Empresas.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
-    private List recuperarFuncionariosNG (int idEmpresa) throws JsageImportException {
+    private List recuperarFuncionariosNG (int idEmpresa) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -178,14 +178,14 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos funcionarios no ng_folha.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
     @Override
-    public List capturarInfoFuncionariosNG (int idEmpresa) throws JsageImportException{
+    public List capturarInfoFuncionariosNG (int idEmpresa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -207,7 +207,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
                     }
                 } 
             }else{
-                throw new JsageImportException("Não foi encontrado Funcionarios para a empresa: " + idEmpresa);
+                throw new JSageImportException("Não foi encontrado Funcionarios para a empresa: " + idEmpresa);
             }
                         
             
@@ -215,14 +215,14 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
     @Override
-    public List pesquisaId(int id) throws JsageImportException {
+    public List pesquisaId(int id) throws JSageImportException {
         if (id == 0) {
             return recuperarEmpresas();
         }
@@ -244,13 +244,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
-    private List pesquisaIdFuncionario(int id) throws JsageImportException {
+    private List pesquisaIdFuncionario(int id) throws JSageImportException {
         if (id == 0) {
             return recuperarEmpresas();
         }
@@ -272,13 +272,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Funcionário não encontrado.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }         
     
-    private List pesquisarSalario(int idRegistro) throws JsageImportException{
+    private List pesquisarSalario(int idRegistro) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -299,13 +299,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do salário.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
-    private List recuperarDependentes (int idPessoa) throws JsageImportException{
+    private List recuperarDependentes (int idPessoa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -324,7 +324,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos funcionarios no ng_folha.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -334,10 +334,10 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
      * Retorna os dependentes dos funcionarios repassados pela id
      * @param idPessoa
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List capturarInfoDependente (int idPessoa) throws JsageImportException{
+    public List capturarInfoDependente (int idPessoa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -363,13 +363,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
-    private List recuperarPai (int idPessoa) throws JsageImportException{
+    private List recuperarPai (int idPessoa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -388,7 +388,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos funcionarios no ng.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -398,10 +398,10 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
      * Retorna os dependentes dos funcionarios repassados pela id
      * @param idPessoa
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List capturarInfoPai (int idPessoa) throws JsageImportException{
+    public List capturarInfoPai (int idPessoa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -427,13 +427,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
     
-    private List recuperarMae (int idPessoa) throws JsageImportException{
+    private List recuperarMae (int idPessoa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -452,7 +452,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos funcionarios no ng_folha.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -461,10 +461,10 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
      * Retorna os dependentes dos funcionarios repassados pela id
      * @param idPessoa
      * @return List
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     @Override
-    public List capturarInfoMae (int idPessoa) throws JsageImportException{
+    public List capturarInfoMae (int idPessoa) throws JSageImportException{
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -489,7 +489,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -499,11 +499,11 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
      * Realiza um teste de conexão com um bando de dados repassado
      * @param id
      * @return boolean
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
     
     @Override
-    public List recuperarDadosFuncionais(int id) throws JsageImportException {
+    public List recuperarDadosFuncionais(int id) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -523,13 +523,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos dados funcionais.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
-    public List recuperarFeriasFuncionario (int id) throws JsageImportException{
+    public List recuperarFeriasFuncionario (int id) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -548,7 +548,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos dados das férias.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
@@ -556,7 +556,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
     
     
     @Override
-    public boolean TestaConexao(String server, String bd, String port, String user, String password) throws JsageImportException {
+    public boolean TestaConexao(String server, String bd, String port, String user, String password) throws JSageImportException {
         Connection con = null;
         boolean flag = false;
         con = GerenciadorConexao.getConnection(server, bd, port, user, password);
@@ -566,7 +566,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         return flag;
     } 
     
-    public int recuperarIdRegistroFolha (int idPessoa) throws JsageImportException{
+    public int recuperarIdRegistroFolha (int idPessoa) throws JSageImportException{
         int idregistro = 0;
         Connection con = null;
         PreparedStatement stmt = null;
@@ -585,14 +585,14 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível recuperar a idRegistro da " + idPessoa+ " .");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
         return idregistro;
     }
     
-    public List recuperarMesesMovimentacaoFolha (int idRegistro, int competenciaAno)throws JsageImportException {
+    public List recuperarMesesMovimentacaoFolha (int idRegistro, int competenciaAno)throws JSageImportException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -612,13 +612,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta oos meses de movimentacao.");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
-    public List recuperarMovimentacaoFuncionario (int idRegistro, int competenciaAno, int competenciaMes) throws JsageImportException{
+    public List recuperarMovimentacaoFuncionario (int idRegistro, int competenciaAno, int competenciaMes) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -639,13 +639,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta da movimentacao do funcionario "+idRegistro+" .");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
-    public List recuperarTodosPlanoSaude () throws JsageImportException{
+    public List recuperarTodosPlanoSaude () throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -663,14 +663,14 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
             } catch (SQLException exc) {
                 StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta dos Planos de Saude .");
                 mensagem.append("\nMotivo: " + exc.getMessage());
-                throw new JsageImportException(mensagem.toString());
+                throw new JSageImportException(mensagem.toString());
             } finally {
                 GerenciadorConexao.closeConexao(con, stmt, rs);
             }
     }
     
     @Override
-    public String importaFuncionarios (int idEmpresa, int idPessoa, String nome) throws JsageImportException{
+    public String importaFuncionarios (int idEmpresa, int idPessoa, String nome) throws JSageImportException{
         String funcionario = "";
         String log = "";
         ControlerFuncionarioSAGE controlSAGE = new ControlerFuncionarioSAGE();
@@ -832,7 +832,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         
     
     @Override
-    public int SizeImport() throws JsageImportException {
+    public int SizeImport() throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
@@ -850,7 +850,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         } finally {
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
@@ -859,9 +859,9 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
      * Cria uma empresa vinda do banco NG
      * @param rs
      * @return Pessoa Juridica 
-     * @throws JsageImportException 
+     * @throws JSageImportException 
      */
-    private PessoaJuridica criarEmpresaNG(ResultSet rs) throws JsageImportException{
+    private PessoaJuridica criarEmpresaNG(ResultSet rs) throws JSageImportException{
         PessoaJuridica pj = new PessoaJuridica();
         try{
             /* Dados de uma pessoa comum*/
@@ -911,12 +911,12 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Pessoa Jurídica.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return pj;
     }
     
-    private DadosFuncionario criarFuncionarioNG(ResultSet rs )throws JsageImportException{
+    private DadosFuncionario criarFuncionarioNG(ResultSet rs )throws JSageImportException{
         DadosFuncionario pf = new DadosFuncionario();
         try{
             /*Dados de uma pessoa Comum*/
@@ -1044,12 +1044,12 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Pessoa Fisica." + pf.getIdPessoa());
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return pf;
     }
     
-    private DependenteNG criarDependenteNG (ResultSet rs) throws JsageImportException{
+    private DependenteNG criarDependenteNG (ResultSet rs) throws JSageImportException{
         DependenteNG dep = new DependenteNG();
         try{
              /*Dados de uma pessoa Comum*/
@@ -1090,12 +1090,12 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Pessoa Fisica." + dep.getIdPessoa());
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return dep;
     }
     
-    private PessoaFisica criarPessoaFisica(ResultSet rs )throws JsageImportException{
+    private PessoaFisica criarPessoaFisica(ResultSet rs )throws JSageImportException{
         PessoaFisica pf = new PessoaFisica();
         try{
             /*Dados de uma pessoa Comum*/
@@ -1198,12 +1198,12 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         } catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados da Pessoa Fisica." + pf.getIdPessoa());
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return pf;
     }
     
-    private DadosFuncionaisNG criarDadosFuncionaisNG (ResultSet rs) throws JsageImportException{
+    private DadosFuncionaisNG criarDadosFuncionaisNG (ResultSet rs) throws JSageImportException{
         DadosFuncionaisNG dados = new DadosFuncionaisNG();
         try{
                         
@@ -1296,12 +1296,12 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados funcionais do Funcionário.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return dados;
     } 
     
-    private FeriasNG criarFeriasFuncionario (ResultSet rs) throws JsageImportException{
+    private FeriasNG criarFeriasFuncionario (ResultSet rs) throws JSageImportException{
         FeriasNG ferias = new FeriasNG();
         try{
             ferias.setIdRegistro(rs.getInt("idregistro"));
@@ -1337,12 +1337,12 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados das férias do Funcionário.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return ferias;        
     }
 
-    private MovimentacaoNG criarMovimentacaoNG(ResultSet rs) throws JsageImportException {
+    private MovimentacaoNG criarMovimentacaoNG(ResultSet rs) throws JSageImportException {
         MovimentacaoNG mov = new MovimentacaoNG();
         try{
             mov.setIdregistro(rs.getInt("idregistro"));
@@ -1400,13 +1400,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível criar o objeto MovimentaçãoNG.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return mov;
         
     }
     
-   private PlanoSaudeNG criarPlanoSaudeNG(ResultSet rs) throws JsageImportException {
+   private PlanoSaudeNG criarPlanoSaudeNG(ResultSet rs) throws JSageImportException {
         PlanoSaudeNG planoSaude = new PlanoSaudeNG();
         try{
             planoSaude.setCodigooperadoraplanosaude(rs.getString("codigooperadoraplanosaude"));
@@ -1417,7 +1417,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
         }catch (SQLException ex) {
             StringBuffer mensagem = new StringBuffer("Não foi possível criar o objeto PlanoSaudeNG.");
             mensagem.append("\nMotivo: " + ex.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
         return planoSaude;
         

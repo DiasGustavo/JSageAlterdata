@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 
 /**
  *
@@ -18,7 +18,7 @@ import jsageImport.exception.JsageImportException;
  */
 public class PropertiesJdbc {
 
-    public void criarProperties (JdbcConnection jdbc, String nomeArquivo) throws JsageImportException{
+    public void criarProperties (JdbcConnection jdbc, String nomeArquivo) throws JSageImportException{
          //cira um objeto da classe java.ulti.Properties
         Properties properties = new Properties();
         
@@ -37,7 +37,7 @@ public class PropertiesJdbc {
             //fecha o arquivo
             fos.close();
         } catch(IOException ex){
-            throw new JsageImportException("O arquivo properties não foi gerado " + ex.getMessage());
+            throw new JSageImportException("O arquivo properties não foi gerado " + ex.getMessage());
         }
     }
     

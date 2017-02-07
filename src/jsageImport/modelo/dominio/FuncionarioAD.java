@@ -9,12 +9,12 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author Nyedja Lucena
+ * @author Jefferson Lucena
  */
 public class FuncionarioAD {
     
    
-  String cdchamada;
+  String cdchamada;//id do funcionario na tabela
   String nmfuncionario;
   String nmendereco;
   String nrendereco;

@@ -6,7 +6,7 @@ package jsageImport.view;
 import javax.swing.JOptionPane;
 import jsageImport.controler.ControlerFuncionarioNG;
 import jsageImport.controler.ControlerFuncionarioSAGE;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.persistencia.JdbcConnection;
 import jsageImport.modelo.persistencia.PropertiesJdbc;
 
@@ -242,7 +242,7 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
         
         try{
             if (jtxUsuarioNG.getText().isEmpty()|| jtxSenhaNG.getText().isEmpty() || jtxIPServidorNG.getText().isEmpty()||jtxPortaNG.getText().isEmpty()|| jtxUsuarioSAGE.getText().isEmpty()|| jtxBancoSAGE.getText().isEmpty()|| jtxSenhaSAGE.getText().isEmpty()|| jtxIPServidorSAGE.getText().isEmpty()|| jtxBancoSAGE.getText().isEmpty()){
-                throw new JsageImportException ("Todos os campos devem ser preenchidos!");
+                throw new JSageImportException ("Todos os campos devem ser preenchidos!");
             } else {
                 if (this.TestaConfig()){
                     JOptionPane.showMessageDialog(null, "Servidores Configurados com Sucesso");   
@@ -258,7 +258,7 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
-    private void criarConfigNG () throws JsageImportException{
+    private void criarConfigNG () throws JSageImportException{
         JdbcConnection jdbc = new JdbcConnection();
         PropertiesJdbc config = new PropertiesJdbc();
         jdbc.setUser(jtxUsuarioNG.getText());
@@ -270,7 +270,7 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
         config.criarProperties(jdbc, "NG");
     }
     
-    private void criarConfigSAGE () throws JsageImportException{
+    private void criarConfigSAGE () throws JSageImportException{
         JdbcConnection jdbc = new JdbcConnection();
         PropertiesJdbc config = new PropertiesJdbc();
         jdbc.setUser(jtxUsuarioSAGE.getText());
@@ -302,7 +302,7 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Falta configuração dos Bancos NG e SAGE.");
         } 
 }
-    private boolean TestaConfig () throws JsageImportException{
+    private boolean TestaConfig () throws JSageImportException{
         ControlerFuncionarioNG control = new ControlerFuncionarioNG();
         ControlerFuncionarioSAGE controlSAGE = new ControlerFuncionarioSAGE();
         
@@ -318,18 +318,18 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
                      flag = true;
                 } else {
                     if ((testeConexaoNG == false) && (testeConexaoSAGE == false)){                        
-                        throw new JsageImportException("Erro nos dados dos Bancos NG e SAGE!");
+                        throw new JSageImportException("Erro nos dados dos Bancos NG e SAGE!");
                     }
                     if (testeConexaoSAGE == false){
-                        throw new JsageImportException("Erro nos dados do Banco SAGE!");
+                        throw new JSageImportException("Erro nos dados do Banco SAGE!");
                     }
                     if (testeConexaoNG == false){
-                        throw new JsageImportException("Erro nos dados do Banco NG!");
+                        throw new JSageImportException("Erro nos dados do Banco NG!");
                     }
                     
                 }
         } catch (Exception ex){
-            throw new JsageImportException("Conexão com o SQL SERVER falhou!");
+            throw new JSageImportException("Conexão com o SQL SERVER falhou!");
         }
         return flag;
     }

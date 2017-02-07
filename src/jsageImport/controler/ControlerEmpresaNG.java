@@ -5,7 +5,7 @@
 package jsageImport.controler;
 
 import java.util.List;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.ipersistencia.IPersistenciaEmpresaNG;
 import jsageImport.persistencia.GerenciadorPersistenciaNG;
 import jsageImport.persistencia.IGerenciadorPersistenciaNG;
@@ -18,7 +18,7 @@ import jsageImport.persistencia.IGerenciadorPersistenciaNG;
  */
 public class ControlerEmpresaNG {
     
-    public List pesquisarEmpresas () throws JsageImportException{
+    public List pesquisarEmpresas () throws JSageImportException{
         List listaEmp;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaEmpresaNG PEmpresas = gerenteP.getPersistenciaEmpresa();
@@ -27,19 +27,19 @@ public class ControlerEmpresaNG {
         return listaEmp;
     }
     
-    public void ImportarEmpresa(int idEmpresa, String cnpj)throws JsageImportException{
+    public void ImportarEmpresa(int idEmpresa, String cnpj)throws JSageImportException{
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaEmpresaNG PFuncionario = gerenteP.getPersistenciaEmpresa();
         PFuncionario.ImportaEmpresas(idEmpresa,cnpj);
     }
     
-    public void ImportaTodasEmpresas(int idEmpresa, String cnpj) throws JsageImportException {
+    public void ImportaTodasEmpresas(int idEmpresa, String cnpj) throws JSageImportException {
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaEmpresaNG PFuncionario = gerenteP.getPersistenciaEmpresa();
         PFuncionario.ImportaTodasEmpresas(idEmpresa,cnpj);
     }
     
-    public List recuperarAgenciaNG () throws JsageImportException{
+    public List recuperarAgenciaNG () throws JSageImportException{
         List listaAge;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaEmpresaNG PFuncionario = gerenteP.getPersistenciaEmpresa();
@@ -48,7 +48,7 @@ public class ControlerEmpresaNG {
         return listaAge;
     }
     
-    public List pesquisarCnpj(int idEmpresa, String cnpj) throws JsageImportException {
+    public List pesquisarCnpj(int idEmpresa, String cnpj) throws JSageImportException {
         List empresas;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaEmpresaNG PEmpresa = gerenteP.getPersistenciaEmpresa();
@@ -56,7 +56,7 @@ public class ControlerEmpresaNG {
         return empresas;
     }
     
-    public List pesquisarEmpresaPorID(int idEmpresa) throws JsageImportException{
+    public List pesquisarEmpresaPorID(int idEmpresa) throws JSageImportException{
         List empresas;
         IGerenciadorPersistenciaNG gerenteP = new GerenciadorPersistenciaNG();
         IPersistenciaEmpresaNG PEmpresa = gerenteP.getPersistenciaEmpresa();

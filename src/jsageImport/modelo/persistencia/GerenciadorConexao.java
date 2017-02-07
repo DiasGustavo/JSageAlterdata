@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import jsageImport.exception.JsageImportException;
+import jsageImport.exception.JSageImportException;
 
 /**
  * @author Gustavo Dias
@@ -22,7 +22,7 @@ class GerenciadorConexao {
      * @return Connection
      * @throws ClassNotFoundException 
      */
-    static Connection getConnection() throws JsageImportException{
+    static Connection getConnection() throws JSageImportException{
 		//System.out.println("Conectando ao banco");
 		try{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -30,14 +30,14 @@ class GerenciadorConexao {
 			return DriverManager.getConnection("jdbc:sqlserver://192.168.10.105:1433;databaseName=sage_gestao_contabil;user=sa;password=S@geBr.2014;");
 		} catch (SQLException ex){
                     String mensagem = "Não foi possível realizar a conexão com o banco de dados";
-                    throw new JsageImportException(mensagem);
+                    throw new JSageImportException(mensagem);
 		} catch (ClassNotFoundException ex) {
                     String mensagem = "Não foi possível localizar o driver de conexão!";
-                    throw new JsageImportException (mensagem);
+                    throw new JSageImportException (mensagem);
                 }
 	}
     
-    static Connection getConnection(String url) throws JsageImportException{
+    static Connection getConnection(String url) throws JSageImportException{
 		//System.out.println("Conectando ao banco");
 		try{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -45,10 +45,10 @@ class GerenciadorConexao {
 			return DriverManager.getConnection(url);
 		} catch (SQLException ex){
                     String mensagem = "Não foi possível realizar a conexão com o banco de dados";
-                    throw new JsageImportException(mensagem);
+                    throw new JSageImportException(mensagem);
 		} catch (ClassNotFoundException ex) {
                     String mensagem = "Não foi possível localizar o driver de conexão!";
-                    throw new JsageImportException (mensagem);
+                    throw new JSageImportException (mensagem);
                 }
 	}
     /**
@@ -83,9 +83,9 @@ class GerenciadorConexao {
    /**
     * Fecha a conexao com o banco apenas passando a conexao utilizada
     * @param con conexao a ser fechada
-    * @throws JsageImportException 
+    * @throws JSageImportException 
     */ 
-   static void closeConnection (Connection con) throws JsageImportException{
+   static void closeConnection (Connection con) throws JSageImportException{
        closeConexao(con, null, null);
    }
    
@@ -93,9 +93,9 @@ class GerenciadorConexao {
     * Fecha a conexão com o banco de dados e o objeto PreparedStatement
     * @param con a conexão a ser fechada
     * @param stmt o objeto PreparedStatement a ser fechado
-    * @throws JsageImportException
+    * @throws JSageImportException
     */
-    static void closeConexao(Connection con, PreparedStatement stmt)throws JsageImportException {
+    static void closeConexao(Connection con, PreparedStatement stmt)throws JSageImportException {
         closeConexao(con, stmt, null);
     }
    
@@ -104,9 +104,9 @@ class GerenciadorConexao {
     * @param con a conexão a ser fechada
     * @param stmt o objeto PreparedStatement a ser fechado
     * @param rs o objeto ResultSet a ser fechado
-    * @throws JsageImportException
+    * @throws JSageImportException
     */
-    static void closeConexao(Connection con, PreparedStatement stmt, ResultSet rs) throws JsageImportException {
+    static void closeConexao(Connection con, PreparedStatement stmt, ResultSet rs) throws JSageImportException {
         try {
             if (rs != null){
                 rs.close();
@@ -120,7 +120,7 @@ class GerenciadorConexao {
         } catch (SQLException exc) {
             StringBuffer mensagem = new StringBuffer("Não foi possível finalizar a conexão com banco de dados.");
             mensagem.append("\nMotivo: " + exc.getMessage());
-            throw new JsageImportException(mensagem.toString());
+            throw new JSageImportException(mensagem.toString());
         }
     }
 }
