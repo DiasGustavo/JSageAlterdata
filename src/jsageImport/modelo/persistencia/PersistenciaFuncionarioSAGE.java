@@ -18,6 +18,7 @@ import jsageImport.modelo.dominio.DependenteNG;
 import jsageImport.modelo.dominio.DependenteSAGE;
 import jsageImport.modelo.dominio.EmpresaSAGE;
 import jsageImport.modelo.dominio.FeriasNG;
+import jsageImport.modelo.dominio.FuncionarioAD;
 import jsageImport.modelo.dominio.FuncionarioSAGE;
 import jsageImport.modelo.dominio.MovimentacaoNG;
 import jsageImport.modelo.dominio.PlanoSaudeNG;
@@ -138,8 +139,8 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
    
     
     @Override
-    public void gravarFuncionario (int cdEmpresa, DadosFuncionario pf, DadosFuncionaisNG fun) throws JSageImportException{
-        if (pf == null){
+    public void gravarFuncionario (int cdEmpresa, FuncionarioAD funAD, DadosFuncionaisNG fun) throws JSageImportException{
+        if (funAD == null){
             String mensagem = "Não foi informada o Funcionario para importar";
             throw new JSageImportException(mensagem);
         }        
@@ -155,47 +156,47 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             con = GerenciadorConexao.getConnection(jdbc.lerPropriedades("SAGE"));
             stmt = con.prepareStatement(SQL_INCLUIR_FUNCIONARIO);
             stmt.setInt(1, cdEmpresa);//cd_empresa
-            stmt.setInt(2, pf.getIdPessoa());//cd_funcionario
-            stmt.setString(3, trataDados.trataGrandesString(pf.getNomePessoa(),40));//nome            
-            stmt.setString(4, trataDados.trataGrandesString(pf.getLogradouro(),40));//endereco
-            stmt.setInt(5, trataDados.tratarNrEndereco(pf.getNumeroEndereco()));//nr_endereco
-            stmt.setString(6, trataDados.trataGrandesString(trataDados.recuperarComplemento(pf.getComplemento()),15));//compl_endereco
-            stmt.setString(7, trataDados.trataGrandesString(pf.getBairro(),20));//bairro
-            stmt.setString(8, trataDados.recuperarCidade(pf.getIdmunicipio()));//cidade
-            stmt.setString(9, trataDados.recuperarUFMunicipio(pf.getIdmunicipio()));//estado
-            stmt.setInt(10, trataDados.converterSrintIntCom0(pf.getCep()));//cep
-            stmt.setString(11, trataDados.recuperarPai(pf.getIdPessoa()));//pai
-            stmt.setString(12, trataDados.recuperarMae (pf.getIdPessoa()));//mae
-            stmt.setString(13, pf.getIndSexo());//sexo
-            stmt.setShort(14, trataDados.recuperarEstadoCivil(pf.getIdEStadoCivil()));//estado_civil
+            stmt.setInt(2, trataDados.converterSrintInt(funAD.getCdchamada()));//cd_funcionario
+            stmt.setString(3, trataDados.trataGrandesString(funAD.getNmfuncionario(),40));//nome            
+            stmt.setString(4, trataDados.trataGrandesString(funAD.getNmendereco(),40));//endereco
+            stmt.setInt(5, trataDados.tratarNrEndereco(funAD.getNrendereco()));//nr_endereco
+            stmt.setString(6, trataDados.trataGrandesString(trataDados.recuperarComplemento(funAD.getNmcomplemento()),15));//compl_endereco
+            stmt.setString(7, trataDados.trataGrandesString(funAD.getNmbairro(),20));//bairro
+            stmt.setString(8, funAD.getNmcidade());//cidade
+            stmt.setString(9, funAD.getCduf());//estado
+            stmt.setInt(10, trataDados.converterSrintIntCom0(funAD.getNrcep()));//cep
+            stmt.setString(11, funAD.getNmpai());//pai
+            stmt.setString(12, funAD.getNmmae());//mae
+            stmt.setString(13, funAD.getTpsexo());//sexo
+            stmt.setShort(14, trataDados.convertStringToShort(funAD.getTpestadocivil()));//estado_civil
             stmt.setShort(15, (short) 10);//nacionalidade - todos como brasileiros
             stmt.setShort(16, anoChegadaDefault);//ano_chegada
-            stmt.setInt(17, pf.getIdGrauInstrucao());//grau_instrucao - todos com o ensino medio completo
-            stmt.setTimestamp(18, pf.getDataNascimento());//dt_nascimento
-            stmt.setShort(19, dddDefault);//ddd
-            stmt.setShort(20, telefoneDefault);//telefone
-            stmt.setString(21, trataDados.trataGrandesString(pf.getApelido(),15));//apelido
+            stmt.setInt(17, trataDados.converterSrintInt(funAD.getTpinstrucao()));//grau_instrucao - todos com o ensino medio completo
+            stmt.setTimestamp(18, funAD.getDtnascimento());//dt_nascimento
+            stmt.setShort(19, trataDados.convertStringToShort(funAD.getNrddd()));//ddd
+            stmt.setShort(20, trataDados.convertStringToShort(funAD.getNrtelefone()));//telefone
+            stmt.setString(21, trataDados.trataGrandesString(funAD.getNmcurto(),15));//apelido
             stmt.setString(22, null);//chave_acesso
             stmt.setString(23, null);//senha_acesso
-            stmt.setString(24, trataDados.recuperarRaca(pf.getIdRaca()));//raca
-            stmt.setString(25,trataDados.convertIntToString(pf.getIdTipoDeficiencia()));//deficiente
-            stmt.setString(26, trataDados.recuperarCidade(pf.getIdMunicipioNaturalidade()));//cidade_nascimento
-            stmt.setString(27, trataDados.recuperarUFMunicipio(pf.getIdMunicipioNaturalidade()));//estado_nascimento
+            stmt.setString(24, funAD.getTpcorraca());//raca
+            stmt.setString(25,funAD.getStdeficiente());//deficiente
+            stmt.setString(26, funAD.getMunicipio_nascimento_ibge_codigo());//cidade_nascimento
+            stmt.setString(27, funAD.getCdufnascimento());//estado_nascimento
             stmt.setShort(28, dddDefault);//ddd_celular
             stmt.setInt(29, celularDefault);//celular
-            stmt.setString(30, trataDados.trataGrandesString(pf.getNomePessoa(),70));//nomecompleto
+            stmt.setString(30, trataDados.trataGrandesString(funAD.getNmfuncionario(),70));//nomecompleto
             stmt.setString(31, null);//email
-            stmt.setTimestamp(32, pf.getDataChegada());//data_chegada
+            stmt.setTimestamp(32, funAD.getData_chegada());//data_chegada
             stmt.setString(33, "R");//tipo logradouro
-            stmt.setInt(34, trataDados.recuperarCodigoIBGE(pf.getIdMunicipioNaturalidade()));//cd_municipio
-            stmt.setInt(35, trataDados.recuperarCodigoIBGE(pf.getIdMunicipioNaturalidade()));//cd_municipio_nascimento
+            stmt.setInt(34, trataDados.converterSrintInt(funAD.getMunicipio_residencia_ibge_codigo()));//cd_municipio
+            stmt.setInt(35, trataDados.converterSrintInt(funAD.getMunicipio_nascimento_ibge_codigo()));//cd_municipio_nascimento
             stmt.setString(36, funAposentado);//funcionario_aposentado
             stmt.setTimestamp(37, trataDados.horaAtual());//data_hora_alteracao
                         
             stmt.executeUpdate();          
                        
         } catch (SQLException exc) {
-            StringBuffer msg = new StringBuffer("Não foi possível incluir o Funcionario " + pf.getIdPessoa() + " no SAGE.");
+            StringBuffer msg = new StringBuffer("Não foi possível incluir o Funcionario " + funAD.getCdchamada()+ " no SAGE.");
             msg.append("\nMotivo: " + exc.getMessage());
             throw new JSageImportException(msg.toString());
         } finally {
