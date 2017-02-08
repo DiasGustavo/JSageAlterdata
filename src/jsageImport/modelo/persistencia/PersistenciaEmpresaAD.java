@@ -21,8 +21,8 @@ import jsageImport.modelo.ipersistencia.IPersistenciaEmpresaAD;
  */
 public class PersistenciaEmpresaAD implements IPersistenciaEmpresaAD{
     
-     PropertiesJdbc jdbc = new PropertiesJdbc();
-    
+    PropertiesJdbc jdbc = new PropertiesJdbc();
+    private TratamentoDados trataDados = new TratamentoDados();
     //string SQL da consultas das empresas no banco AlterData
     
     private static final String SQL_PESQUISARTODOS = "SELECT * FROM wphd.empresa order by cdempresa asc";

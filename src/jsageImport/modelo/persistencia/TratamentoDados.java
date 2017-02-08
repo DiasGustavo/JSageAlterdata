@@ -19,7 +19,7 @@ import jsageImport.controler.ControlerFuncionarioNG;
 import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.MovimentacaoNG;
 import jsageImport.modelo.dominio.PessoaFisica;
-
+import org.apache.commons.lang3.StringUtils;
 /**
  *
  * @author Gustavo
@@ -1639,7 +1639,12 @@ public class TratamentoDados {
             }
         return parent;
     }
-    
+    /**
+     * formata o campo de acordo com a mascara padrão para o value
+     * @param pattern
+     * @param value
+     * @return String
+     */
     public String formatarCampo(String pattern, Object value) {
         MaskFormatter mask;
         try {
@@ -1650,6 +1655,20 @@ public class TratamentoDados {
             throw new RuntimeException(e);
         }
     }
-
-
+    
+    public String preencherStringEsquerda (int codigo, String caractere){
+        String cod = Integer.toString(codigo);
+        cod = StringUtils.leftPad(cod, 5, caractere);
+        
+        return cod;
+    }
+    
+    public String removerCaractere (String palavra, String caractere){
+        String stringFormatada = palavra;
+        if (stringFormatada.indexOf(caractere)>0){
+            stringFormatada = stringFormatada.replace(stringFormatada, caractere);
+        }
+               
+        return stringFormatada;
+    }
 }

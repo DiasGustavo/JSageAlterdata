@@ -14,11 +14,11 @@ import jsageImport.exception.JSageImportException;
  */
 public interface IPersistenciaFuncionarioAD {
     
-    public abstract List pesquisarTodos() throws JSageImportException;
-    public abstract List pesquisaId (int id) throws JSageImportException;
-   
+    public abstract List pesquisarTodos(String cdEmpresa) throws JSageImportException;
+    public abstract List recuperarFuncionarioPorId (String cdEmpresa, String cdFuncionario) throws JSageImportException;
     public abstract boolean TestaConexao (String server, String bd, String port, String user, String password) throws JSageImportException;
     public abstract String importaFuncionarios (int idFuncionario, int cdEmpresa, String cpf) throws JSageImportException;
+    public abstract String exportarFuncionarios (String cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException;
     public abstract int SizeImport() throws JSageImportException;
     
 }

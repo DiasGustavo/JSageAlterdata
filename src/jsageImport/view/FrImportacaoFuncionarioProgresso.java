@@ -16,6 +16,7 @@ import jsageImport.controler.ControlerFuncionarioNG;
 import jsageImport.controler.ControlerFuncionarioSAGE;
 import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.dominio.EmpresaSAGE;
+import jsageImport.modelo.dominio.FuncionarioAD;
 import jsageImport.modelo.dominio.PessoaFisica;
 
 /**
@@ -58,7 +59,7 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
     public void exibirFuncionarios () throws JSageImportException{
         ControlerFuncionarioNG control = new ControlerFuncionarioNG();
         // O metodo pesquisarTodos retorna um list
-        this.funcionarios = control.listarFuncionarios(this.idpj);
+        this.funcionarios = control.listarDadosFuncionais(this.idpj);
         jlEmpresa.setText("Empresa: " + this.nomeEmpresa);
         
         DefaultTableModel model = (DefaultTableModel)tFuncionarios.getModel();
@@ -67,11 +68,11 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
         Iterator resultado = funcionarios.iterator();
         
         while (resultado.hasNext()){
-            PessoaFisica pf = (PessoaFisica) resultado.next();
-            int id = pf.getIdPessoa();
-            String nome = pf.getNomePessoa();
-            String cpf = pf.getCpfFormatado();
-            Timestamp dataNascimento = pf.getDataNascimento();
+            FuncionarioAD pf = (FuncionarioAD) resultado.next();
+            String id = pf.getCdchamada();
+            String nome = pf.getNmfuncionario();
+            String cpf = pf.getNrcpf();
+            Timestamp dataNascimento = pf.getDtnascimento();
             
             Object[] linha = {id, nome, cpf, dataNascimento };
             model.addRow(linha);

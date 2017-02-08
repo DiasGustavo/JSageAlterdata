@@ -70,16 +70,16 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         }
     }
     
-    public PessoaJuridica getEmpresa() throws JSageImportException {
-        PessoaJuridica pj = null;
+    public EmpresaAD getEmpresa() throws JSageImportException {
+        EmpresaAD pj = null;
         int linhaSelecionada = tFuncionarios.getSelectedRow();
         if (linhaSelecionada < 0) {
             throw new JSageImportException("Não foi selecionado nenhuma Empresa");
         }
-        pj = (PessoaJuridica) this.empresas.get(linhaSelecionada);
-        this.nomeEmpresa = pj.getNomeAbreviado();
-        this.cnpj = pj.getCnpjFormatado();
-        this.idEmpresa = pj.getIdPessoa();
+        pj = (EmpresaAD) this.empresas.get(linhaSelecionada);
+        this.nomeEmpresa = pj.getNmempresa();
+        this.cnpj = pj.getNrcgc();
+        this.idEmpresa = pj.getCdempresa();
         return pj;
     }
     
@@ -250,12 +250,12 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbPesquisarActionPerformed
 
     private void jbImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbImportarActionPerformed
-        PessoaJuridica pj = null;
+        EmpresaAD pj = null;
         FrImportacaoFuncionarioProgresso pjFun = new FrImportacaoFuncionarioProgresso();
         try {
             pj = this.getEmpresa();
             //faz parte da janela de funcionários da empresa selecionada
-            pjFun.setIdPj(pj.getIdPessoa());
+            pjFun.setIdPj(pj.getCdempresa());
             pjFun.setNomeEmpresa(this.nomeEmpresa);
             pjFun.setCnpj(this.cnpj);
             importarDados();            

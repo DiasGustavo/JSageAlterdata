@@ -11,7 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import jsageImport.controler.ControlerFuncionarioSAGE;
 import jsageImport.exception.JSageImportException;
+import jsageImport.log.LogSage;
 import jsageImport.modelo.dominio.DadosFuncionario;
 import jsageImport.modelo.dominio.FuncionarioAD;
 import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioAD;
@@ -23,12 +25,13 @@ import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioAD;
 public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
     
     PropertiesJdbc jdbc = new PropertiesJdbc();
-    
+    private TratamentoDados trataDados = new TratamentoDados();
+    private LogSage logarq = new LogSage();
     //string SQL da consultas das empresas no banco AlterData
     
-    private static final String SQL_PESQUISARTODOS = "SELECT * FROM wdp.? where is null dtdemissao";
+    private static final String SQL_PESQUISARTODOS = "SELECT * FROM wdp.f? where is null dtdemissao";
     
-    private static final String SQL_PESQUISAREMPRESA_ID = "";
+    private static final String SQL_PESQUISARFUNCIONARIO_ID = "SELECT * FROM wpd.f? where cdchamada = ?";
     
     // string SQL para pesquisa dos funcionarios ALterData
     
@@ -37,20 +40,21 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
     //url para conexão com o bando AD
     //jdbc:sqlserver://servidor:porta;databaseName=banco;user=usuario;password=senha;"
     
-    private final String urlAD = "jdbc:postgresql://"+jdbc.lerServidor("AD")+":"+jdbc.lerPorta("AD")+"/"+jdbc.lerDatabase("AD")+","+jdbc.lerUsuario("AD")+","+jdbc.lerSenha("AD")+";"; 
-    
-    
-    
+    private final String urlAD = "jdbc:postgresql://"+jdbc.lerServidor("AD")+":"+jdbc.lerPorta("AD")+"/"+jdbc.lerDatabase("AD"); 
+    private final String usuarioAD =jdbc.lerUsuario("AD");
+    private final String senhaAD =jdbc.lerSenha("AD");
+        
 
     @Override
-    public List pesquisarTodos() throws JSageImportException {
+    public List pesquisarTodos(String cdEmpresa) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            con = GerenciadorConexao.getConnectionPostgresql(urlAD);
-            stmt = con.prepareStatement(SQL_PESQUISARTODOS);
+            con = GerenciadorConexao.getConnectionPostgresUrl(urlAD, usuarioAD, senhaAD);
+            stmt = con.prepareStatement(SQL_PESQUISARTODOS);  
+            stmt.setString(1, cdEmpresa);
             rs = stmt.executeQuery();
             List listaFuncionarios = new ArrayList();
             while (rs.next()) {
@@ -66,10 +70,31 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
-
+    
     @Override
-    public List pesquisaId(int id) throws JSageImportException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List recuperarFuncionarioPorId (String cdEmpresa, String cdFuncionario) throws JSageImportException{
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List listaFuncionarios = new ArrayList();
+        try {
+            con = GerenciadorConexao.getConnectionPostgresUrl(urlAD, usuarioAD, senhaAD);
+            stmt = con.prepareStatement(SQL_PESQUISARFUNCIONARIO_ID);
+            stmt.setString(1, cdEmpresa);
+            stmt.setString(2, cdFuncionario);
+            rs = stmt.executeQuery();
+            while(rs.next())
+            { 
+                FuncionarioAD fun = criarFuncionarioAD (rs); 
+                listaFuncionarios.add(fun);                
+            }
+            
+        }catch (SQLException ex) { 
+            System.out.println("Não foi possível gerar a consulta por id.\n Motivo" + ex);
+        } finally{
+            GerenciadorConexao.closeConexao(con, stmt,rs);
+        }
+        return listaFuncionarios;
     }
 
     @Override
@@ -81,7 +106,27 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
     public String importaFuncionarios(int idFuncionario, int cdEmpresa, String cpf) throws JSageImportException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    @Override
+    public String exportarFuncionarios (String cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException{
+        String funcionario = "";
+        String log = "";
+        ControlerFuncionarioSAGE controlFunSage = new ControlerFuncionarioSAGE();
+        if(!(cnpj.isEmpty())){
+            List idEmpresa = controlFunSage.pesquisarCNPJ(cnpj);
+            log = "Existentes no SAGE: " +cdEmpresa + " --- " + cdFuncionario;
+            logarq.LogTxt(log, "PersisntenciaAD", "emp"+cdEmpresa);
+            if (idEmpresa.size()>0){
+                throw new JSageImportException("Empresa cadastrada no Sage","Aviso");
+            }else{
+                
+                throw new JSageImportException("Empresa não cadastrada no SAGE realize o cadatro da mesmo primeiro \n depois importe os seu funcionários..","Aviso");
+            }
+        }else{
+            throw new JSageImportException("Cnpj não capturado.");
+        }
+        //funcionario = "código: " + cdFuncionario;
+        
+    }
     @Override
     public int SizeImport() throws JSageImportException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
