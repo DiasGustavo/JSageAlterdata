@@ -14,185 +14,169 @@ import java.sql.Timestamp;
 public class FuncionarioAD {
     
    
-  String cdchamada;//id do funcionario na tabela
-  String nmfuncionario;
-  String nmendereco;
-  String nrendereco;
-  String nmcomplemento;
-  String nmbairro;
-  String nmcidade;
-  String cduf;
-  String nrcep;
-  String nrddd;
-  String nrtelefone;
-  String nrcelular;
-  Timestamp dtnascimento;
-  String tpestadocivil;
-  String tpsexo;
-  String nmnacionalidade;
-  String nranochegada;
-  String tpinstrucao;
-  String tpinstrucaorais;
-  Timestamp dtvctoexperiencia;
-  Timestamp dtprorrogacaoexperiencia;
-  Timestamp dtadmissao;
-  Timestamp dttransferencia;
-  String tpcausatransferencia;
-  Timestamp dtdemissao;
-  String tpcausademissao;
-  String stavisoindenizado;
-  String stterminocontrato;
-  String tpvinculo;
-  String dtvctoatestado;
-  String iddepartamento;
-  String idfuncao;
-  double vlsalariobase;
-  String tpformapgto;
-  int nrminpordia;
-  String stprimtrabcaged;
-  String tpreintegracao;
-  int nrlivroficharegistro;
-  String tplivroficharegistro;
-  int nrfolhalivroficharegistro;
-  String dsobservacaorecibo;
-  String idagencia;
-  String nrcontacorrente;
-  String idbanco;
-  String cdcamaracompensacao;
-  String tpcontribuicaosindical;
-  String cdretencaoirrf;
-  String tpfaixainss;
-  String stadiantamento;
-  double aladiantamento;
-  double alvaletransporte;
-  String idsindicatogrcs;
-  String nridentidade;
-  String morgaoexpedidor;
-  Timestamp dtexpedicao;
-  String tpidentifpispasep;
-  String cdufexpedicao;
-  String nrpispasep;
-  Timestamp dtpis;
-  String nrcpf;
-  String nrctps;
-  String nrseriectps;
-  String cdufctps;
-  Timestamp dtexpedicaoctps;
-  String nrcertificadoreservista;
-  String nrserie;
-  String nrcategoriamilitar;
-  String nrtituloeleitor;
-  String nrzonaeleitoral;
-  String nrsecaoeleitoral;
-  String nrcarteirahabilitacao;
-  Timestamp dtvctohabilitacao;
-  String tphabilitacao;
-  Timestamp dtvalcarteiraidentest;
-  String tpvistoestrangeiro;
-  Timestamp dtvalidadecarttrabest;
-  String nrcontafgts;
-  String cdufcontafgts;
-  String stmudouenderecofgts;
-  Timestamp dtopcaofgts;
-  double vlsaldofgts;
-  String dsobservacao;
-  String idhorario;
-  String dsfoto;
-  String nmmae;
-  String nmpai;
-  double vllimitecredito;
-  String nrcartaoponto;
-  Timestamp dtavisoprevio;
-  String stavisoprevio;
-  String tpocorrencia;
-  int tpcategoria;
-  String tpcartaosalario;
-  String nmagenciabkfolha;
-  String nrcepagenciabkfolha;
-  String cddocbkfolha;
-  String nrbancobkfolha;
-  String stfgtsmesanterior;
-  String tpfuncaposentado;
-  String tpcorraca;
-  String stdeficiente;
-  String streabilitado;
-  String strestantecontrato;
-  int qtdiastrabalhados;
-  int qtdiassalariofamilia;
-  int qtdiasfaltasproporcionais;
-  int qtdiasfaltas;
-  int qtfaltasperiodoaquisitivo;
-  String usuarioswmail;
-  String stsituacaolegal;
-  String cdocupacaoprincipal;
-  String cdnaturezaocupacao;
-  String cdufnascimento;
-  String nmmunnascimento;
-  String idbancopis;
-  String idagenciapis;
-  String nrdecretonaturalizado;
-  String qtavosperdidos;
-  int qtdiastrabnaopagos;
-  String stgerarais;
-  Timestamp dtvenctoaprendizagem;
-  String tranfpoutraemp;
-  String dscausademissao;
-  String stindalvara;
-  String nmcurto;
-  String tipobeneficioticket;
-  String dtestabilidade;
-  boolean stimprimeetiqueta;
-  boolean stimprimefolhaponto;
-  String nrcartaoticket;
-  Timestamp dtentrada;
-  String dsinformacoes;
-  String tppagamentorais;
-  double nrci;
-  String tipodeficiencia;
-  Timestamp dtinicialprocesso;
-  Timestamp dtfinalprocesso;
-  String nrprocesso;
-  String nrvaraprocesso;
-  int nranoprocesso;
-  Timestamp dtalteracaocad;
-  Timestamp dtultrescisao;
-  String  cdmotivorct;
-  String  tpcontrato;
-  String  motivo_estabilidade;
-  Timestamp prorrogacao_tempo_determindado;
-  double alpensaofgts;
-  short tipo_conta;
-  short tipo_certidao_civil;
-  Timestamp data_certidao_civil;
-  String  termo_matricula_certidao_civil;
-  short quantidade_dias_ferias;
-  short tipo_identidade;
-  String orgao_emissor_cnh;
-  Timestamp data_expedicao_cnh;
-  String tipo_logradouro;
-  Timestamp data_chegada;
-  boolean casado_com_brasileiro;
-  boolean filho_com_brasileiro;
-  Timestamp data_naturalizacao;
-  int pais_nascimento_id;
-  int pais_residencia_id;
-  String municipio_nascimento_ibge_codigo;
-  String municipio_residencia_ibge_codigo;
-  short tipo_admissao;
-  boolean admissao_especial_caged;
-  boolean aviso_trabalhado_fixo_30_dias;
-  String  uf_emissor_cnh;
-  Timestamp data_primeira_cnh;
-  short tipo_jornada_trabalho;
-  short tipo_contratacao_temporaria;
-  short tipo_provimento; 
-  boolean deficiencia_fisica;
-  boolean deficiencia_auditiva;
-  boolean deficiencia_visual;
-  boolean deficiencia_mental;
-  boolean deficiencia_intelectual;
-  short categoria_trabalhador_esocial;
-  boolean nao_atualiza_salario;
+    String cdchamada;//id do funcionario na tabela
+    String nmfuncionario;
+    String nmendereco;
+    String nrendereco;
+    String nmcomplemento;
+    String nmbairro;
+    String nmcidade;
+    String cduf;
+    String nrcep;
+    String nrddd;
+    String nrtelefone;
+
+    Timestamp dtnascimento;
+    String tpestadocivil;
+    String tpsexo;
+    String nmnacionalidade;
+    String nranochegada;
+    String tpinstrucao;
+    String tpinstrucaorais;
+    Timestamp dtvctoexperiencia;
+    Timestamp dtprorrogacaoexperiencia;
+    Timestamp dtadmissao;
+
+    Timestamp dtdemissao;
+    String tpcausademissao;
+    String stavisoindenizado;
+    String stterminocontrato;
+    String tpvinculo;
+    String dtvctoatestado;
+    String iddepartamento;
+    String idfuncao;
+    double vlsalariobase;
+    String tpformapgto;
+    int nrminpordia;
+    String stprimtrabcaged;
+
+    String tplivroficharegistro;
+    int nrfolhalivroficharegistro;
+
+    String idagencia;
+    String nrcontacorrente;
+    String idbanco;
+    String cdcamaracompensacao;
+    String tpcontribuicaosindical;
+    String cdretencaoirrf;
+    String tpfaixainss;
+    String stadiantamento;
+    double aladiantamento;
+    double alvaletransporte;
+    String idsindicatogrcs;
+    String nridentidade;
+    String morgaoexpedidor;
+    Timestamp dtexpedicao;
+    String tpidentifpispasep;
+    String cdufexpedicao;
+    String nrpispasep;
+    Timestamp dtpis;
+    String nrcpf;
+    String nrctps;
+    String nrseriectps;
+    String cdufctps;
+    Timestamp dtexpedicaoctps;
+    String nrcertificadoreservista;
+    String nrserie;
+
+    String nrtituloeleitor;
+    String nrzonaeleitoral;
+    String nrsecaoeleitoral;
+    String nrcarteirahabilitacao;
+    Timestamp dtvctohabilitacao;
+    String tphabilitacao;
+    Timestamp dtvalcarteiraidentest;
+
+    String nrcontafgts;
+    String cdufcontafgts;
+    String stmudouenderecofgts;
+    Timestamp dtopcaofgts;
+
+    String dsobservacao;
+    String idhorario;
+
+    String nmmae;
+    String nmpai;
+
+    Timestamp dtavisoprevio;
+    String stavisoprevio;
+
+    int tpcategoria;
+
+    String tpfuncaposentado;
+    String tpcorraca;
+    String stdeficiente;
+    String streabilitado;
+
+    int qtdiastrabalhados;
+    int qtdiassalariofamilia;
+    int qtdiasfaltasproporcionais;
+    int qtdiasfaltas;
+    int qtfaltasperiodoaquisitivo;
+
+    String cdocupacaoprincipal;
+    String cdnaturezaocupacao;
+    String cdufnascimento;
+    String nmmunnascimento;
+    String idbancopis;
+    String idagenciapis;
+    String nrdecretonaturalizado;
+
+    int qtdiastrabnaopagos;
+    String stgerarais;
+    Timestamp dtvenctoaprendizagem;
+
+    String dscausademissao;
+    String stindalvara;
+    String nmcurto;
+    String tipobeneficioticket;
+
+    boolean stimprimeetiqueta;
+    boolean stimprimefolhaponto;
+
+    Timestamp dtentrada;
+
+    String tppagamentorais;
+    double nrci;
+    String tipodeficiencia;
+
+    Timestamp dtalteracaocad;
+    Timestamp dtultrescisao;
+    String cdmotivorct;
+    String tpcontrato;
+
+    short tipo_conta;
+    short tipo_certidao_civil;
+    Timestamp data_certidao_civil;
+    String termo_matricula_certidao_civil;
+    short quantidade_dias_ferias;
+    short tipo_identidade;
+    String orgao_emissor_cnh;
+    Timestamp data_expedicao_cnh;
+    String tipo_logradouro;
+    Timestamp data_chegada;
+    boolean casado_com_brasileiro;
+    boolean filho_com_brasileiro;
+    Timestamp data_naturalizacao;
+    int pais_nascimento_id;
+    int pais_residencia_id;
+    String municipio_nascimento_ibge_codigo;
+    String municipio_residencia_ibge_codigo;
+    short tipo_admissao;
+    boolean admissao_especial_caged;
+    boolean aviso_trabalhado_fixo_30_dias;
+    String uf_emissor_cnh;
+    Timestamp data_primeira_cnh;
+    short tipo_jornada_trabalho;
+    short tipo_contratacao_temporaria;
+    short tipo_provimento;
+    boolean deficiencia_fisica;
+    boolean deficiencia_auditiva;
+    boolean deficiencia_visual;
+    boolean deficiencia_mental;
+    boolean deficiencia_intelectual;
+    short categoria_trabalhador_esocial;
+    boolean nao_atualiza_salario;
 
     public String getCdchamada() {
         return cdchamada;
@@ -282,14 +266,6 @@ public class FuncionarioAD {
         this.nrtelefone = nrtelefone;
     }
 
-    public String getNrcelular() {
-        return nrcelular;
-    }
-
-    public void setNrcelular(String nrcelular) {
-        this.nrcelular = nrcelular;
-    }
-
     public Timestamp getDtnascimento() {
         return dtnascimento;
     }
@@ -368,22 +344,6 @@ public class FuncionarioAD {
 
     public void setDtadmissao(Timestamp dtadmissao) {
         this.dtadmissao = dtadmissao;
-    }
-
-    public Timestamp getDttransferencia() {
-        return dttransferencia;
-    }
-
-    public void setDttransferencia(Timestamp dttransferencia) {
-        this.dttransferencia = dttransferencia;
-    }
-
-    public String getTpcausatransferencia() {
-        return tpcausatransferencia;
-    }
-
-    public void setTpcausatransferencia(String tpcausatransferencia) {
-        this.tpcausatransferencia = tpcausatransferencia;
     }
 
     public Timestamp getDtdemissao() {
@@ -482,22 +442,6 @@ public class FuncionarioAD {
         this.stprimtrabcaged = stprimtrabcaged;
     }
 
-    public String getTpreintegracao() {
-        return tpreintegracao;
-    }
-
-    public void setTpreintegracao(String tpreintegracao) {
-        this.tpreintegracao = tpreintegracao;
-    }
-
-    public int getNrlivroficharegistro() {
-        return nrlivroficharegistro;
-    }
-
-    public void setNrlivroficharegistro(int nrlivroficharegistro) {
-        this.nrlivroficharegistro = nrlivroficharegistro;
-    }
-
     public String getTplivroficharegistro() {
         return tplivroficharegistro;
     }
@@ -512,14 +456,6 @@ public class FuncionarioAD {
 
     public void setNrfolhalivroficharegistro(int nrfolhalivroficharegistro) {
         this.nrfolhalivroficharegistro = nrfolhalivroficharegistro;
-    }
-
-    public String getDsobservacaorecibo() {
-        return dsobservacaorecibo;
-    }
-
-    public void setDsobservacaorecibo(String dsobservacaorecibo) {
-        this.dsobservacaorecibo = dsobservacaorecibo;
     }
 
     public String getIdagencia() {
@@ -722,14 +658,6 @@ public class FuncionarioAD {
         this.nrserie = nrserie;
     }
 
-    public String getNrcategoriamilitar() {
-        return nrcategoriamilitar;
-    }
-
-    public void setNrcategoriamilitar(String nrcategoriamilitar) {
-        this.nrcategoriamilitar = nrcategoriamilitar;
-    }
-
     public String getNrtituloeleitor() {
         return nrtituloeleitor;
     }
@@ -786,22 +714,6 @@ public class FuncionarioAD {
         this.dtvalcarteiraidentest = dtvalcarteiraidentest;
     }
 
-    public String getTpvistoestrangeiro() {
-        return tpvistoestrangeiro;
-    }
-
-    public void setTpvistoestrangeiro(String tpvistoestrangeiro) {
-        this.tpvistoestrangeiro = tpvistoestrangeiro;
-    }
-
-    public Timestamp getDtvalidadecarttrabest() {
-        return dtvalidadecarttrabest;
-    }
-
-    public void setDtvalidadecarttrabest(Timestamp dtvalidadecarttrabest) {
-        this.dtvalidadecarttrabest = dtvalidadecarttrabest;
-    }
-
     public String getNrcontafgts() {
         return nrcontafgts;
     }
@@ -816,22 +728,6 @@ public class FuncionarioAD {
 
     public void setCdufcontafgts(String cdufcontafgts) {
         this.cdufcontafgts = cdufcontafgts;
-    }
-
-    public short getQuantidade_dias_ferias() {
-        return quantidade_dias_ferias;
-    }
-
-    public void setQuantidade_dias_ferias(short quantidade_dias_ferias) {
-        this.quantidade_dias_ferias = quantidade_dias_ferias;
-    }
-
-    public short getTipo_identidade() {
-        return tipo_identidade;
-    }
-
-    public void setTipo_identidade(short tipo_identidade) {
-        this.tipo_identidade = tipo_identidade;
     }
 
     public String getStmudouenderecofgts() {
@@ -850,14 +746,6 @@ public class FuncionarioAD {
         this.dtopcaofgts = dtopcaofgts;
     }
 
-    public double getVlsaldofgts() {
-        return vlsaldofgts;
-    }
-
-    public void setVlsaldofgts(double vlsaldofgts) {
-        this.vlsaldofgts = vlsaldofgts;
-    }
-
     public String getDsobservacao() {
         return dsobservacao;
     }
@@ -872,14 +760,6 @@ public class FuncionarioAD {
 
     public void setIdhorario(String idhorario) {
         this.idhorario = idhorario;
-    }
-
-    public String getDsfoto() {
-        return dsfoto;
-    }
-
-    public void setDsfoto(String dsfoto) {
-        this.dsfoto = dsfoto;
     }
 
     public String getNmmae() {
@@ -898,22 +778,6 @@ public class FuncionarioAD {
         this.nmpai = nmpai;
     }
 
-    public double getVllimitecredito() {
-        return vllimitecredito;
-    }
-
-    public void setVllimitecredito(double vllimitecredito) {
-        this.vllimitecredito = vllimitecredito;
-    }
-
-    public String getNrcartaoponto() {
-        return nrcartaoponto;
-    }
-
-    public void setNrcartaoponto(String nrcartaoponto) {
-        this.nrcartaoponto = nrcartaoponto;
-    }
-
     public Timestamp getDtavisoprevio() {
         return dtavisoprevio;
     }
@@ -930,68 +794,12 @@ public class FuncionarioAD {
         this.stavisoprevio = stavisoprevio;
     }
 
-    public String getTpocorrencia() {
-        return tpocorrencia;
-    }
-
-    public void setTpocorrencia(String tpocorrencia) {
-        this.tpocorrencia = tpocorrencia;
-    }
-
     public int getTpcategoria() {
         return tpcategoria;
     }
 
     public void setTpcategoria(int tpcategoria) {
         this.tpcategoria = tpcategoria;
-    }
-
-    public String getTpcartaosalario() {
-        return tpcartaosalario;
-    }
-
-    public void setTpcartaosalario(String tpcartaosalario) {
-        this.tpcartaosalario = tpcartaosalario;
-    }
-
-    public String getNmagenciabkfolha() {
-        return nmagenciabkfolha;
-    }
-
-    public void setNmagenciabkfolha(String nmagenciabkfolha) {
-        this.nmagenciabkfolha = nmagenciabkfolha;
-    }
-
-    public String getNrcepagenciabkfolha() {
-        return nrcepagenciabkfolha;
-    }
-
-    public void setNrcepagenciabkfolha(String nrcepagenciabkfolha) {
-        this.nrcepagenciabkfolha = nrcepagenciabkfolha;
-    }
-
-    public String getCddocbkfolha() {
-        return cddocbkfolha;
-    }
-
-    public void setCddocbkfolha(String cddocbkfolha) {
-        this.cddocbkfolha = cddocbkfolha;
-    }
-
-    public String getNrbancobkfolha() {
-        return nrbancobkfolha;
-    }
-
-    public void setNrbancobkfolha(String nrbancobkfolha) {
-        this.nrbancobkfolha = nrbancobkfolha;
-    }
-
-    public String getStfgtsmesanterior() {
-        return stfgtsmesanterior;
-    }
-
-    public void setStfgtsmesanterior(String stfgtsmesanterior) {
-        this.stfgtsmesanterior = stfgtsmesanterior;
     }
 
     public String getTpfuncaposentado() {
@@ -1024,14 +832,6 @@ public class FuncionarioAD {
 
     public void setStreabilitado(String streabilitado) {
         this.streabilitado = streabilitado;
-    }
-
-    public String getStrestantecontrato() {
-        return strestantecontrato;
-    }
-
-    public void setStrestantecontrato(String strestantecontrato) {
-        this.strestantecontrato = strestantecontrato;
     }
 
     public int getQtdiastrabalhados() {
@@ -1072,22 +872,6 @@ public class FuncionarioAD {
 
     public void setQtfaltasperiodoaquisitivo(int qtfaltasperiodoaquisitivo) {
         this.qtfaltasperiodoaquisitivo = qtfaltasperiodoaquisitivo;
-    }
-
-    public String getUsuarioswmail() {
-        return usuarioswmail;
-    }
-
-    public void setUsuarioswmail(String usuarioswmail) {
-        this.usuarioswmail = usuarioswmail;
-    }
-
-    public String getStsituacaolegal() {
-        return stsituacaolegal;
-    }
-
-    public void setStsituacaolegal(String stsituacaolegal) {
-        this.stsituacaolegal = stsituacaolegal;
     }
 
     public String getCdocupacaoprincipal() {
@@ -1146,14 +930,6 @@ public class FuncionarioAD {
         this.nrdecretonaturalizado = nrdecretonaturalizado;
     }
 
-    public String getQtavosperdidos() {
-        return qtavosperdidos;
-    }
-
-    public void setQtavosperdidos(String qtavosperdidos) {
-        this.qtavosperdidos = qtavosperdidos;
-    }
-
     public int getQtdiastrabnaopagos() {
         return qtdiastrabnaopagos;
     }
@@ -1176,14 +952,6 @@ public class FuncionarioAD {
 
     public void setDtvenctoaprendizagem(Timestamp dtvenctoaprendizagem) {
         this.dtvenctoaprendizagem = dtvenctoaprendizagem;
-    }
-
-    public String getTranfpoutraemp() {
-        return tranfpoutraemp;
-    }
-
-    public void setTranfpoutraemp(String tranfpoutraemp) {
-        this.tranfpoutraemp = tranfpoutraemp;
     }
 
     public String getDscausademissao() {
@@ -1218,14 +986,6 @@ public class FuncionarioAD {
         this.tipobeneficioticket = tipobeneficioticket;
     }
 
-    public String getDtestabilidade() {
-        return dtestabilidade;
-    }
-
-    public void setDtestabilidade(String dtestabilidade) {
-        this.dtestabilidade = dtestabilidade;
-    }
-
     public boolean isStimprimeetiqueta() {
         return stimprimeetiqueta;
     }
@@ -1242,28 +1002,12 @@ public class FuncionarioAD {
         this.stimprimefolhaponto = stimprimefolhaponto;
     }
 
-    public String getNrcartaoticket() {
-        return nrcartaoticket;
-    }
-
-    public void setNrcartaoticket(String nrcartaoticket) {
-        this.nrcartaoticket = nrcartaoticket;
-    }
-
     public Timestamp getDtentrada() {
         return dtentrada;
     }
 
     public void setDtentrada(Timestamp dtentrada) {
         this.dtentrada = dtentrada;
-    }
-
-    public String getDsinformacoes() {
-        return dsinformacoes;
-    }
-
-    public void setDsinformacoes(String dsinformacoes) {
-        this.dsinformacoes = dsinformacoes;
     }
 
     public String getTppagamentorais() {
@@ -1288,46 +1032,6 @@ public class FuncionarioAD {
 
     public void setTipodeficiencia(String tipodeficiencia) {
         this.tipodeficiencia = tipodeficiencia;
-    }
-
-    public Timestamp getDtinicialprocesso() {
-        return dtinicialprocesso;
-    }
-
-    public void setDtinicialprocesso(Timestamp dtinicialprocesso) {
-        this.dtinicialprocesso = dtinicialprocesso;
-    }
-
-    public Timestamp getDtfinalprocesso() {
-        return dtfinalprocesso;
-    }
-
-    public void setDtfinalprocesso(Timestamp dtfinalprocesso) {
-        this.dtfinalprocesso = dtfinalprocesso;
-    }
-
-    public String getNrprocesso() {
-        return nrprocesso;
-    }
-
-    public void setNrprocesso(String nrprocesso) {
-        this.nrprocesso = nrprocesso;
-    }
-
-    public String getNrvaraprocesso() {
-        return nrvaraprocesso;
-    }
-
-    public void setNrvaraprocesso(String nrvaraprocesso) {
-        this.nrvaraprocesso = nrvaraprocesso;
-    }
-
-    public int getNranoprocesso() {
-        return nranoprocesso;
-    }
-
-    public void setNranoprocesso(int nranoprocesso) {
-        this.nranoprocesso = nranoprocesso;
     }
 
     public Timestamp getDtalteracaocad() {
@@ -1362,30 +1066,6 @@ public class FuncionarioAD {
         this.tpcontrato = tpcontrato;
     }
 
-    public String getMotivo_estabilidade() {
-        return motivo_estabilidade;
-    }
-
-    public void setMotivo_estabilidade(String motivo_estabilidade) {
-        this.motivo_estabilidade = motivo_estabilidade;
-    }
-
-    public Timestamp getProrrogacao_tempo_determindado() {
-        return prorrogacao_tempo_determindado;
-    }
-
-    public void setProrrogacao_tempo_determindado(Timestamp prorrogacao_tempo_determindado) {
-        this.prorrogacao_tempo_determindado = prorrogacao_tempo_determindado;
-    }
-
-    public double getAlpensaofgts() {
-        return alpensaofgts;
-    }
-
-    public void setAlpensaofgts(double alpensaofgts) {
-        this.alpensaofgts = alpensaofgts;
-    }
-
     public short getTipo_conta() {
         return tipo_conta;
     }
@@ -1418,7 +1098,22 @@ public class FuncionarioAD {
         this.termo_matricula_certidao_civil = termo_matricula_certidao_civil;
     }
 
-   
+    public short getQuantidade_dias_ferias() {
+        return quantidade_dias_ferias;
+    }
+
+    public void setQuantidade_dias_ferias(short quantidade_dias_ferias) {
+        this.quantidade_dias_ferias = quantidade_dias_ferias;
+    }
+
+    public short getTipo_identidade() {
+        return tipo_identidade;
+    }
+
+    public void setTipo_identidade(short tipo_identidade) {
+        this.tipo_identidade = tipo_identidade;
+    }
+
     public String getOrgao_emissor_cnh() {
         return orgao_emissor_cnh;
     }
@@ -1626,5 +1321,7 @@ public class FuncionarioAD {
     public void setNao_atualiza_salario(boolean nao_atualiza_salario) {
         this.nao_atualiza_salario = nao_atualiza_salario;
     }
+
+  
     
 }

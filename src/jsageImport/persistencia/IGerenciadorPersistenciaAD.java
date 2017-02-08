@@ -5,6 +5,7 @@
  */
 package jsageImport.persistencia;
 
+import jsageImport.modelo.ipersistencia.IPersistenciaEmpresaAD;
 import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioAD;
 
 
@@ -15,5 +16,7 @@ import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioAD;
 public interface IGerenciadorPersistenciaAD {
     
      public IPersistenciaFuncionarioAD getPersistenciaFuncionarioAD();
+     
+     public IPersistenciaEmpresaAD getPersistenciaEmpresaAD();
     
 }

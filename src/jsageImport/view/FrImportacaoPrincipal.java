@@ -9,8 +9,10 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jsageImport.controler.ControlerEmpresaAD;
 import jsageImport.controler.ControlerEmpresaNG;
 import jsageImport.exception.JSageImportException;
+import jsageImport.modelo.dominio.EmpresaAD;
 import jsageImport.modelo.dominio.PessoaJuridica;
 
 /**
@@ -36,7 +38,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
     }
     
     public void exibirEmpresas () throws JSageImportException{
-        ControlerEmpresaNG control = new ControlerEmpresaNG();
+        ControlerEmpresaAD control = new ControlerEmpresaAD();
         // O metodo pesquisarTodos retorna um list
         this.empresas = control.pesquisarEmpresas();
         
@@ -46,11 +48,11 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         Iterator resultado = empresas.iterator();
         
         while (resultado.hasNext()){
-            PessoaJuridica pj = (PessoaJuridica) resultado.next();
-            int id = pj.getIdPessoa();
-            String nomeFantasia = pj.getNomeFantasia();
-            String cnpj = pj.getCnpjFormatado();
-            String nomeAbreviado = pj.getNomeAbreviado();
+            EmpresaAD empAD = (EmpresaAD) resultado.next();
+            int id = empAD.getCdempresa();
+            String nomeFantasia = empAD.getNmfantasia();
+            String cnpj = empAD.getNrcgc();
+            String nomeAbreviado = empAD.getNmempresa();
             
             Object[] linha = {id, nomeFantasia, cnpj, nomeAbreviado };
             model.addRow(linha);
@@ -275,13 +277,13 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
             telaCarregando.setVisible(true);
             for (int i = 0; i < listaEmpresasSelecionadas.size(); i++){
                 pj = (PessoaJuridica)listaEmpresasSelecionadas.get(i);
-                importarTodasEmpresas(pj.getIdPessoa(), pj.getCnpjFormatado());            
+                importarTodasEmpresas(pj.getIdPessoa(), pj.getCnpjFormatado());
             }
             telaCarregando.setVisible(false);
             lStatus.setText("Status:");
-            JOptionPane.showMessageDialog(null, "Empresas Selecionadas gravadas com sucesso!"); 
+            JOptionPane.showMessageDialog(null, "Empresas Selecionadas gravadas com sucesso!");
         } catch (JSageImportException ex){
-            JOptionPane.showMessageDialog(null, "Erro ao gravar as empresas selecionadas!"); 
+            JOptionPane.showMessageDialog(null, "Erro ao gravar as empresas selecionadas!");
         }
     }//GEN-LAST:event_jImportarEmpresasActionPerformed
 

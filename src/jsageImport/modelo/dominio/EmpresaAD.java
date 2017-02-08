@@ -16,6 +16,15 @@ public class EmpresaAD {
     String nmfantasia;
     boolean stativa;
     String nmnomecompleto;
+    String nrcgc;
+
+    public String getNrcgc() {
+        return nrcgc;
+    }
+
+    public void setNrcgc(String nrcgc) {
+        this.nrcgc = nrcgc;
+    }
 
     public int getCdempresa() {
         return cdempresa;

@@ -5,7 +5,9 @@
  */
 package jsageImport.persistencia;
 
+import jsageImport.modelo.ipersistencia.IPersistenciaEmpresaAD;
 import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioAD;
+import jsageImport.modelo.persistencia.PersistenciaEmpresaAD;
 import jsageImport.modelo.persistencia.PersistenciaFuncionarioAD;
 
 /**
@@ -19,6 +21,10 @@ public class GerenciadorPersistenciaAD implements IGerenciadorPersistenciaAD{
         return new PersistenciaFuncionarioAD();
     }
     
+    @Override
+    public IPersistenciaEmpresaAD getPersistenciaEmpresaAD() {
+        return new PersistenciaEmpresaAD();
+    }
     
 
 }

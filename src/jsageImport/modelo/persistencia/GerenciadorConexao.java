@@ -49,6 +49,51 @@ class GerenciadorConexao {
                     throw new JSageImportException (mensagem);
                 }
     }
+    
+    static Connection getConnectionPostGresql(String server, String bd, String port, String user, String password){
+        
+        String driver = "org.postgresql.Driver";
+        String url ="jdbc:postgresql://"+server+":"+port+"/"+bd;
+        String usuario = user;
+        String senha = password;
+        Connection con = null;        
+	try{
+		Class.forName(driver);
+                con = DriverManager.getConnection(url, usuario, senha);
+               
+	// return con;	
+	} catch (SQLException ex){
+            String mensagem = "Não foi possível realizar a conexão com o banco de dados";
+            //throw new JsageImportException(mensagem);
+	} catch (ClassNotFoundException ex) {
+            String mensagem = "Não foi possível localizar o driver de conexão!";
+            //throw new JsageImportException (mensagem);
+        }  
+        return con;
+    }
+    
+    static Connection getConnectionPostgresUrl(String url, String user, String password){
+        
+        String driver = "org.postgresql.Driver";
+        String urlBD = url;
+        String usuario = user;
+        String senha = password;
+        Connection con = null;        
+	try{
+		Class.forName(driver);
+                con = DriverManager.getConnection(urlBD, usuario, senha);
+               
+	// return con;	
+	} catch (SQLException ex){
+            String mensagem = "Não foi possível realizar a conexão com o banco de dados";
+            //throw new JsageImportException(mensagem);
+	} catch (ClassNotFoundException ex) {
+            String mensagem = "Não foi possível localizar o driver de conexão!";
+            //throw new JsageImportException (mensagem);
+        }  
+        return con;
+    }
+    
     static Connection getConnection(String url) throws JSageImportException{
 		//System.out.println("Conectando ao banco");
 		try{

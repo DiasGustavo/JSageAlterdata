@@ -4,7 +4,7 @@
 package jsageImport.view;
 
 import javax.swing.JOptionPane;
-import jsageImport.controler.ControlerFuncionarioNG;
+import jsageImport.controler.ControlerEmpresaAD;
 import jsageImport.controler.ControlerFuncionarioSAGE;
 import jsageImport.exception.JSageImportException;
 import jsageImport.modelo.persistencia.JdbcConnection;
@@ -37,6 +37,8 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
         jtxPortaNG = new javax.swing.JTextField();
         jtxUsuarioNG = new javax.swing.JTextField();
         jtxSenhaNG = new javax.swing.JPasswordField();
+        jLBDAlterData = new javax.swing.JLabel();
+        jTXBDAlterData = new javax.swing.JTextField();
         jpSAGE = new javax.swing.JPanel();
         jlServidorSAGE = new javax.swing.JLabel();
         jlBancoSAGE = new javax.swing.JLabel();
@@ -55,7 +57,7 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
-        jpNG.setBorder(javax.swing.BorderFactory.createTitledBorder("Banco NG"));
+        jpNG.setBorder(javax.swing.BorderFactory.createTitledBorder("Banco AlterData"));
 
         jlIPServidorNG.setText("IP Servidor");
 
@@ -65,6 +67,14 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
 
         jlSenhaNG.setText("Senha");
 
+        jLBDAlterData.setText("Banco");
+
+        jTXBDAlterData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTXBDAlterDataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpNGLayout = new javax.swing.GroupLayout(jpNG);
         jpNG.setLayout(jpNGLayout);
         jpNGLayout.setHorizontalGroup(
@@ -73,21 +83,20 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlUsuarioNG)
-                    .addComponent(jlSenhaNG)
                     .addGroup(jpNGLayout.createSequentialGroup()
                         .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlIPServidorNG)
-                            .addComponent(jlPorta))
+                            .addComponent(jlPorta)
+                            .addComponent(jlSenhaNG))
+                        .addGap(11, 11, 11)
                         .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpNGLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxUsuarioNG, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxPortaNG, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxSenhaNG, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jpNGLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtxIPServidorNG, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTXBDAlterData, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jtxIPServidorNG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtxUsuarioNG, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxPortaNG, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxSenhaNG, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLBDAlterData))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         jpNGLayout.setVerticalGroup(
@@ -99,9 +108,13 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
                     .addComponent(jtxIPServidorNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlPorta)
-                    .addComponent(jtxPortaNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(jLBDAlterData)
+                    .addComponent(jTXBDAlterData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxPortaNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlPorta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlUsuarioNG)
                     .addComponent(jtxUsuarioNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,7 +122,7 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
                 .addGroup(jpNGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlSenhaNG)
                     .addComponent(jtxSenhaNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jpSAGE.setBorder(javax.swing.BorderFactory.createTitledBorder("Banco SAGE"));
@@ -221,13 +234,11 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jpNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpSAGE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(jpSAGE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addComponent(jlProgresso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbConfigServer)
                     .addComponent(jbCancelar))
@@ -258,16 +269,20 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
+    private void jTXBDAlterDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXBDAlterDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTXBDAlterDataActionPerformed
+
     private void criarConfigNG () throws JSageImportException{
         JdbcConnection jdbc = new JdbcConnection();
         PropertiesJdbc config = new PropertiesJdbc();
         jdbc.setUser(jtxUsuarioNG.getText());
         jdbc.setPass(jtxSenhaNG.getText());
-        jdbc.setDatabase("");
+        jdbc.setDatabase(jTXBDAlterData.getText());
         jdbc.setServer(jtxIPServidorNG.getText());
         jdbc.setPort(jtxPortaNG.getText());
         
-        config.criarProperties(jdbc, "NG");
+        config.criarProperties(jdbc, "AD");
     }
     
     private void criarConfigSAGE () throws JSageImportException{
@@ -287,10 +302,11 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
         
         try {
             //Campos referentes ao banco NG
-            jtxIPServidorNG.setText(jdbc.lerServidor("NG"));
-            jtxUsuarioNG.setText(jdbc.lerUsuario("NG"));
-            jtxSenhaNG.setText(jdbc.lerSenha("NG"));
-            jtxPortaNG.setText(jdbc.lerPorta("NG"));
+            jtxIPServidorNG.setText(jdbc.lerServidor("AD"));
+            jtxUsuarioNG.setText(jdbc.lerUsuario("AD"));
+            jTXBDAlterData.setText(jdbc.lerDatabase("AD"));
+            jtxSenhaNG.setText(jdbc.lerSenha("AD"));
+            jtxPortaNG.setText(jdbc.lerPorta("AD"));
             //Campos referentes ao banco SAGE
             jtxIPServidorSAGE.setText(jdbc.lerServidor("SAGE"));
             jtxUsuarioSAGE.setText(jdbc.lerUsuario("SAGE"));
@@ -299,17 +315,17 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
             jtxPortaSAGE.setText(jdbc.lerPorta("SAGE"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Falta configuração dos Bancos NG e SAGE.");
+            JOptionPane.showMessageDialog(null, "Falta configuração dos Bancos AlterData e SAGE.");
         } 
 }
     private boolean TestaConfig () throws JSageImportException{
-        ControlerFuncionarioNG control = new ControlerFuncionarioNG();
+        ControlerEmpresaAD control = new ControlerEmpresaAD();
         ControlerFuncionarioSAGE controlSAGE = new ControlerFuncionarioSAGE();
         
         boolean flag = false;
         
         try{
-        boolean testeConexaoNG = control.testarConexao(jtxIPServidorNG.getText(), "NG",jtxPortaNG.getText(), jtxUsuarioNG.getText(), jtxSenhaNG.getText());
+        boolean testeConexaoNG = control.testarConexao(jtxIPServidorNG.getText(), jTXBDAlterData.getText(),jtxPortaNG.getText(), jtxUsuarioNG.getText(), jtxSenhaNG.getText());
         boolean testeConexaoSAGE = controlSAGE.testarConexao(jtxIPServidorSAGE.getText(), jtxBancoSAGE.getText(), jtxPortaSAGE.getText(), jtxUsuarioSAGE.getText(), jtxSenhaSAGE.getText());
         
                 if (testeConexaoNG && testeConexaoSAGE){
@@ -318,13 +334,13 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
                      flag = true;
                 } else {
                     if ((testeConexaoNG == false) && (testeConexaoSAGE == false)){                        
-                        throw new JSageImportException("Erro nos dados dos Bancos NG e SAGE!");
+                        throw new JSageImportException("Erro nos dados dos Bancos AlterData e SAGE!");
                     }
                     if (testeConexaoSAGE == false){
                         throw new JSageImportException("Erro nos dados do Banco SAGE!");
                     }
                     if (testeConexaoNG == false){
-                        throw new JSageImportException("Erro nos dados do Banco NG!");
+                        throw new JSageImportException("Erro nos dados do Banco AlterData!");
                     }
                     
                 }
@@ -336,6 +352,8 @@ public class FrConfigServers extends javax.swing.JInternalFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLBDAlterData;
+    private javax.swing.JTextField jTXBDAlterData;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbConfigServer;
     private javax.swing.JLabel jlBancoSAGE;
