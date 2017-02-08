@@ -15,8 +15,8 @@ import jsageImport.persistencia.IGerenciadorPersistenciaAD;
  *
  * @author Gustavo
  */
-public class controlerFuncionarioAD {
-    public List pesquisarTodosFuncionarios(String cdEmpresa) throws JSageImportException {
+public class ControlerFuncionarioAD {
+    public List pesquisarTodosFuncionarios(int cdEmpresa) throws JSageImportException {
         List listaFuncionarios;
         IGerenciadorPersistenciaAD gerenteP = new GerenciadorPersistenciaAD();
         IPersistenciaFuncionarioAD PFuncionario = gerenteP.getPersistenciaFuncionarioAD();

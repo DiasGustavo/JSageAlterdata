@@ -65,7 +65,7 @@ public class FuncionarioAD {
     double alvaletransporte;
     String idsindicatogrcs;
     String nridentidade;
-    String morgaoexpedidor;
+    String nmorgaoexpedidor;
     Timestamp dtexpedicao;
     String tpidentifpispasep;
     String cdufexpedicao;
@@ -554,12 +554,12 @@ public class FuncionarioAD {
         this.nridentidade = nridentidade;
     }
 
-    public String getMorgaoexpedidor() {
-        return morgaoexpedidor;
+    public String getNmorgaoexpedidor() {
+        return nmorgaoexpedidor;
     }
 
-    public void setMorgaoexpedidor(String morgaoexpedidor) {
-        this.morgaoexpedidor = morgaoexpedidor;
+    public void setNmorgaoexpedidor(String nmorgaoexpedidor) {
+        this.nmorgaoexpedidor = nmorgaoexpedidor;
     }
 
     public Timestamp getDtexpedicao() {

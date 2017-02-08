@@ -258,7 +258,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
             pjFun.setIdPj(pj.getCdempresa());
             pjFun.setNomeEmpresa(this.nomeEmpresa);
             pjFun.setCnpj(this.cnpj);
-            importarDados();            
+            //importarDados();            
             pjFun.exibirFuncionarios();
             this.getParent().add(pjFun);
             pjFun.setVisible(true);

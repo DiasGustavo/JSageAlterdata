@@ -49,4 +49,6 @@ public interface IPersistenciaFuncionarioSAGE {
     public abstract void gravarPlanoSaudeMovFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JSageImportException;
     public abstract void gravarPlanoSaudeProcFuncionario (MovimentacaoNG movimento, int cdEmpresa, int cdFuncionario) throws JSageImportException;
     public boolean testaConexaoSAGE (String server, String bd, String port, String user, String password) throws JSageImportException;
+     public List pesquisarIdEstablecimentoPorCNPJ (String cnpj) throws JSageImportException;
+     public List pesquisaFuncionarioPorCpf( int cdEmpresa, String cpf) throws JSageImportException;
 }

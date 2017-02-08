@@ -131,6 +131,11 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
     private static final String SQL_PLANO_SAUDE_PROC_FUN = "IF NOT EXISTS (SELECT * FROM CRHPlanoSaudeProcFun WHERE enterprise_id = ? and cd_plano = ? and cd_funcionario = ? and ano = ? and mes = ?)" + 
                                                                 " INSERT INTO CRHPlanoSaudeProcFun (enterprise_id,cd_plano,cd_funcionario,ano,mes,vl_desc_plano,vl_desc_plano_coparticipacao)" +
                                                                 " VALUES (?,?,?,?,?,?,?)";
+    
+     private static final String SQL_PESQUISA_IDESTABELECIMENTO_CNPJ = "SELECT cd_estabelecimento FROM CRDEstabelecimento" +
+                                                        " WHERE cnpj_cpf = ? ";
+     
+     private static final String SQL_PESQUISAR_FUN_CPF = "SELECT cd_funcionario FROM FunDocumento WHERE cd_empresa = ? AND cpf = ?";
      
     /*Strings de url*/
     private final String urlNG = "jdbc:sqlserver://"+jdbc.lerServidor("NG")+":"+jdbc.lerPorta("NG")+";databaseName=ng;user="+jdbc.lerUsuario("NG")+";password="+jdbc.lerSenha("NG")+";"; 
@@ -202,6 +207,64 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
         } finally {
             GerenciadorConexao.closeConexao(con, stmt);
         }
+    }
+    
+    public List pesquisarIdEstablecimentoPorCNPJ (String cnpj) throws JSageImportException{
+        if (cnpj == null || cnpj.isEmpty()) {
+            return recuperarEmpresas();
+        }
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            con = GerenciadorConexao.getConnection(jdbc.lerPropriedades("SAGE"));
+            stmt = con.prepareStatement(SQL_PESQUISA_IDESTABELECIMENTO_CNPJ);
+            stmt.setString(1, cnpj );
+            
+            rs = stmt.executeQuery();
+            List listaFuncionarios = new ArrayList();
+            int cnpjEncontrado;
+            while (rs.next()) {
+                cnpjEncontrado = rs.getInt("cd_estabelecimento");
+                listaFuncionarios.add(cnpjEncontrado);
+            }
+            return listaFuncionarios;
+            } catch (SQLException exc) {
+                StringBuffer mensagem = new StringBuffer("Não foi possível realizar a consulta do Estabelecimento de CNPJ: " + cnpj);
+                mensagem.append("\nMotivo: " + exc.getMessage());
+                throw new JSageImportException(mensagem.toString());
+            } finally {
+                GerenciadorConexao.closeConexao(con, stmt, rs);
+            }
+    }
+    
+     public List pesquisaFuncionarioPorCpf( int cdEmpresa, String cpf) throws JSageImportException {
+        
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            con = GerenciadorConexao.getConnection(jdbc.lerPropriedades("SAGE"));
+            stmt = con.prepareStatement(SQL_PESQUISAR_FUN_CPF);
+            
+            stmt.setInt(1, cdEmpresa);
+            stmt.setString(2, cpf );
+            
+            rs = stmt.executeQuery();
+            List listaFuncionarios = new ArrayList();
+            int ids;
+            while (rs.next()) {
+                ids = rs.getInt("cd_funcionario");
+                listaFuncionarios.add(ids);
+            }
+            return listaFuncionarios;
+            } catch (SQLException exc) {
+                StringBuffer mensagem = new StringBuffer("Não foi possível capturar os funcionários.");
+                mensagem.append("\nMotivo: " + exc.getMessage());
+                throw new JSageImportException(mensagem.toString());
+            } finally {
+                GerenciadorConexao.closeConexao(con, stmt, rs);
+            }
     }
 
     @Override

@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import jsageImport.controler.ControlerEmpresaSAGE;
 import jsageImport.controler.ControlerFuncionarioSAGE;
 import jsageImport.exception.JSageImportException;
 import jsageImport.log.LogSage;
-import jsageImport.modelo.dominio.DadosFuncionario;
 import jsageImport.modelo.dominio.FuncionarioAD;
 import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioAD;
 
@@ -29,13 +29,15 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
     private LogSage logarq = new LogSage();
     //string SQL da consultas das empresas no banco AlterData
     
-    private static final String SQL_PESQUISARTODOS = "SELECT * FROM wdp.f? where is null dtdemissao";
+    private static final String SQL_PESQUISARTODOS = "SELECT * FROM $table where dtdemissao is null";
     
-    private static final String SQL_PESQUISARFUNCIONARIO_ID = "SELECT * FROM wpd.f? where cdchamada = ?";
+    private static final String SQL_PESQUISARFUNCIONARIO_ID = "SELECT * FROM $table where cdchamada = ?";
     
     // string SQL para pesquisa dos funcionarios ALterData
     
     private static final String SQL_PESQUISAR_FUNCIONARIO = "";
+    
+   
     
     //url para conexão com o bando AD
     //jdbc:sqlserver://servidor:porta;databaseName=banco;user=usuario;password=senha;"
@@ -46,18 +48,23 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
         
 
     @Override
-    public List pesquisarTodos(String cdEmpresa) throws JSageImportException {
+    public List pesquisarTodos(int cdEmpresa) throws JSageImportException {
         
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        Long nextID = null;
         try {
             con = GerenciadorConexao.getConnectionPostgresUrl(urlAD, usuarioAD, senhaAD);
-            stmt = con.prepareStatement(SQL_PESQUISARTODOS);  
-            stmt.setString(1, cdEmpresa);
+            String idEmpresa = "wdp.f" + trataDados.preencherStringEsquerda(cdEmpresa, "0");
+            
+            String consulta = SQL_PESQUISARTODOS.replace("$table", idEmpresa);
+            stmt = con.prepareStatement(consulta);  
+            
             rs = stmt.executeQuery();
             List listaFuncionarios = new ArrayList();
             while (rs.next()) {
+                //nextID = rs.getLong(senhaAD)
                 FuncionarioAD fun = criarFuncionarioAD(rs);
                 listaFuncionarios.add(fun);
             }
@@ -70,18 +77,21 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
             GerenciadorConexao.closeConexao(con, stmt, rs);
         }
     }
-    
+     
     @Override
-    public List recuperarFuncionarioPorId (String cdEmpresa, String cdFuncionario) throws JSageImportException{
+    public List recuperarFuncionarioPorId (int cdEmpresa, String cdFuncionario) throws JSageImportException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List listaFuncionarios = new ArrayList();
-        try {
+        try {                   
             con = GerenciadorConexao.getConnectionPostgresUrl(urlAD, usuarioAD, senhaAD);
-            stmt = con.prepareStatement(SQL_PESQUISARFUNCIONARIO_ID);
-            stmt.setString(1, cdEmpresa);
-            stmt.setString(2, cdFuncionario);
+            String idFuncionario = "wdp.f" + trataDados.preencherStringEsquerda(cdEmpresa, "0");
+            String consulta = SQL_PESQUISARFUNCIONARIO_ID.replace("$table", idFuncionario );
+            stmt = con.prepareStatement(consulta);  
+            
+                    
+            stmt.setString(1, cdFuncionario);
             rs = stmt.executeQuery();
             while(rs.next())
             { 
@@ -107,16 +117,40 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
-    public String exportarFuncionarios (String cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException{
+    public String exportarFuncionarios (int cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException{
         String funcionario = "";
         String log = "";
         ControlerFuncionarioSAGE controlFunSage = new ControlerFuncionarioSAGE();
+        ControlerEmpresaSAGE controleEmpSage = new ControlerEmpresaSAGE();
+        
         if(!(cnpj.isEmpty())){
-            List idEmpresa = controlFunSage.pesquisarCNPJ(cnpj);
+            List listaIds = controlFunSage.pesquisarCNPJ(cnpj);
             log = "Existentes no SAGE: " +cdEmpresa + " --- " + cdFuncionario;
             logarq.LogTxt(log, "PersisntenciaAD", "emp"+cdEmpresa);
-            if (idEmpresa.size()>0){
-                throw new JSageImportException("Empresa cadastrada no Sage","Aviso");
+            List listaIdEstabelecimentos = controlFunSage.pesquisarIdEstablecimentoPorCNPJ(cnpj);
+             
+            if (listaIds.size()>0 && listaIdEstabelecimentos.size()>0){
+                List listaFuncionario = recuperarFuncionarioPorId(cdEmpresa, cdFuncionario);
+                FuncionarioAD funcionarioAD = (FuncionarioAD) listaFuncionario.get(0);
+                int idEmpresa = (int) listaIds.get(0);
+                
+                List listaFuncionariosSage = controlFunSage.pesquisaFuncionarioPorCpf(idEmpresa, funcionarioAD.getNrcpf());
+                //controleEmpSage.gravarCargo(funcionario, idEmpresa);
+                controleEmpSage.gravarBancoGeral(idEmpresa);
+                if (listaFuncionariosSage.isEmpty()){
+                    controlFunSage.gravarFuncionario(idEmpresa, funcionario, dadosFuncionais);
+                    controlFunSage.gravarDocumentos(cdFuncionario, idEmpresa, dadosFuncionais);
+                    controlFunSage.gravarLotacao(cdFuncionario, idEmpresa, (int) listaIdEstabelecimentos.get(0), funcionario);
+                    controlFunSage.gravarColaborador(idEmpresa, cdFuncionario, funcionario);
+                    controlFunSage.gravarFuncao(cdFuncionario, idEmpresa, funcionario);
+                    controlFunSage.gravarFunEspecifico(cdFuncionario, idEmpresa);
+                    controlFunSage.gravarSalario(cdFuncionario, idEmpresa, funcionario);
+                    controlFunSage.gravarFerias(cdFuncionario, idEmpresa, funcionario);
+                    controlFunSage.gravarControleESocial(cdFuncionario, idEmpresa);
+                    controlFunSage.gravarControleCamposESocial(idEmpresa, cdFuncionario);
+                    controlFunSage.gravarDadosFuncionais(idEmpresa, cdFuncionario, dadosFuncionais, funcionario);
+                }
+                
             }else{
                 
                 throw new JSageImportException("Empresa não cadastrada no SAGE realize o cadatro da mesmo primeiro \n depois importe os seu funcionários..","Aviso");
@@ -124,9 +158,13 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
         }else{
             throw new JSageImportException("Cnpj não capturado.");
         }
-        //funcionario = "código: " + cdFuncionario;
+        funcionario = "código: " + cdFuncionario;
+        
+        return funcionario;
         
     }
+    
+       
     @Override
     public int SizeImport() throws JSageImportException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -183,7 +221,7 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
             fun.setAlvaletransporte(rs.getDouble("alvaletransporte"));
             fun.setIdsindicatogrcs(rs.getString("idsindicatogrcs"));
             fun.setNridentidade(rs.getString("nridentidade"));
-            fun.setMorgaoexpedidor(rs.getString("morgaoexpedidor"));
+            fun.setNmorgaoexpedidor(rs.getString("nmorgaoexpedidor"));
             fun.setDtexpedicao(rs.getTimestamp("dtexpedicao"));
             fun.setTpidentifpispasep(rs.getString("tpidentifpispasep"));
             fun.setCdufexpedicao(rs.getString("cdufexpedicao"));

@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
+import jsageImport.controler.ControlerFuncionarioAD;
 import jsageImport.controler.ControlerFuncionarioNG;
 import jsageImport.controler.ControlerFuncionarioSAGE;
 import jsageImport.exception.JSageImportException;
@@ -57,9 +58,10 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
     }
     
     public void exibirFuncionarios () throws JSageImportException{
-        ControlerFuncionarioNG control = new ControlerFuncionarioNG();
+        ControlerFuncionarioAD control = new ControlerFuncionarioAD();
         // O metodo pesquisarTodos retorna um list
-        this.funcionarios = control.listarDadosFuncionais(this.idpj);
+                
+        this.funcionarios = control.pesquisarTodosFuncionarios(this.idpj);
         jlEmpresa.setText("Empresa: " + this.nomeEmpresa);
         
         DefaultTableModel model = (DefaultTableModel)tFuncionarios.getModel();
@@ -107,7 +109,7 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
     
     public void importarDados () throws JSageImportException{
             
-            ControlerFuncionarioNG control = new ControlerFuncionarioNG();
+            ControlerFuncionarioAD control = new ControlerFuncionarioAD();
             ControlerFuncionarioSAGE ctr = new ControlerFuncionarioSAGE();
             List empresas = ctr.pesquisarCNPJ(this.cnpj);
             //captura as inforamações da empresa para onde os funcionários serão inseridos

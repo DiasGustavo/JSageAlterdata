@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package jsageImport.teste;
+import jsageImport.modelo.persistencia.TratamentoDados;
 import org.apache.commons.lang3.StringUtils;
 /**
  *
@@ -11,9 +12,12 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class GerarCodigoEmpresa {
     public static void main (String args[]){
-        String codigo = "10";
-        codigo = StringUtils.leftPad(codigo, 5, "0");
-        System.out.println(codigo);
+        
+        TratamentoDados trataDados = new TratamentoDados();
+        
+        
+        
+        System.out.println(trataDados.preencherStringEsquerda(10, "0"));
     }
     
 }

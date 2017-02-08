@@ -210,5 +210,18 @@ public class ControlerFuncionarioSAGE {
         return resultado;
     }
     
+    public List pesquisarIdEstablecimentoPorCNPJ (String cnpj) throws JSageImportException{
+        IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
+        IPersistenciaFuncionarioSAGE PFuncionario = gerenteP.getPersistenciaFuncionario();
+        List lfuncionarios = PFuncionario.pesquisarIdEstablecimentoPorCNPJ(cnpj);
+        return lfuncionarios;
+    }
+    
+    public List pesquisaFuncionarioPorCpf( int cdEmpresa, String cpf) throws JSageImportException {
+        IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
+        IPersistenciaFuncionarioSAGE PFuncionario = gerenteP.getPersistenciaFuncionario();
+        List lfuncionarios = PFuncionario.pesquisaFuncionarioPorCpf(cdEmpresa, cpf);
+        return lfuncionarios;
+    }
 
 }
