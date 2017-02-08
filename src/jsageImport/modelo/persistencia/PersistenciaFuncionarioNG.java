@@ -703,7 +703,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
                 DadosFuncionaisNG funDadosFuncionais = (DadosFuncionaisNG) listaDadosFuncionais.get(0);
                     
                 //o funcionário finalmente é gravado no banco sage
-                controlSAGE.gravarFuncionario(idEmpresa, pjGravar, funDadosFuncionais);
+                //controlSAGE.gravarFuncionario(idEmpresa, pjGravar, funDadosFuncionais);
                 //gravar os documentos do funcionário no banco
                 controlSAGE.gravarDocumentos(idPessoa, idEmpresa, pjGravar);
                 //grava a lotação do funcionario indicado

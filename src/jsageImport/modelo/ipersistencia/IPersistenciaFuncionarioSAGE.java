@@ -11,6 +11,7 @@ import jsageImport.modelo.dominio.DadosFuncionaisNG;
 import jsageImport.modelo.dominio.DadosFuncionario;
 import jsageImport.modelo.dominio.DependenteNG;
 import jsageImport.modelo.dominio.FeriasNG;
+import jsageImport.modelo.dominio.FuncionarioAD;
 import jsageImport.modelo.dominio.MovimentacaoNG;
 import jsageImport.modelo.dominio.PlanoSaudeNG;
 
@@ -26,7 +27,7 @@ public interface IPersistenciaFuncionarioSAGE {
     public abstract List pesquisaFuncionario(int idPessoa, int cdEmpresa, String cpf) throws JSageImportException;
     public abstract List pesquisaFuncionarioNome( int cdEmpresa, String cpf) throws JSageImportException;
     
-    public abstract void gravarFuncionario (int cdEmpresa, DadosFuncionario pf, DadosFuncionaisNG fun) throws JSageImportException;
+    public abstract void gravarFuncionario (int cdEmpresa, FuncionarioAD funAD, DadosFuncionaisNG fun) throws JSageImportException;
     public abstract void gravarDocumentos (int cdFuncionario, int cdEmpresa, DadosFuncionario pf) throws JSageImportException;
     public abstract void gravarLotacao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JSageImportException;
     public abstract void gravarColaborador (int cdEmpresa, int cdFuncionario, DadosFuncionario df) throws JSageImportException;

@@ -9,6 +9,7 @@ import jsageImport.modelo.dominio.DadosFuncionaisNG;
 import jsageImport.modelo.dominio.DadosFuncionario;
 import jsageImport.modelo.dominio.DependenteNG;
 import jsageImport.modelo.dominio.FeriasNG;
+import jsageImport.modelo.dominio.FuncionarioAD;
 import jsageImport.modelo.dominio.MovimentacaoNG;
 import jsageImport.modelo.dominio.PlanoSaudeNG;
 import jsageImport.modelo.ipersistencia.IPersistenciaFuncionarioSAGE;
@@ -68,10 +69,10 @@ public class ControlerFuncionarioSAGE {
     }
     
       
-    public void gravarFuncionario (int cdEmpresa, DadosFuncionario pf, DadosFuncionaisNG fun) throws JSageImportException{
+    public void gravarFuncionario (int cdEmpresa, FuncionarioAD funAD, DadosFuncionaisNG fun) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
-        PEmpresa.gravarFuncionario(cdEmpresa, pf, fun);
+        PEmpresa.gravarFuncionario(cdEmpresa, funAD, fun);
         
     }
     
