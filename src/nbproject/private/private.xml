@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+<<<<<<< HEAD
+            <file>file:/D:/Gustavo/Documents/GitHub/JSageAlterdata/src/jsageImport/view/FrImportacaoPrincipal.java</file>
+=======
+            <file>file:/D:/Nyedja%20Lucena/Documents/GitHub/JSageAlterdata/src/jsageImport/modelo/ipersistencia/IPersistenciaFuncionarioAD.java</file>
+            <file>file:/D:/Nyedja%20Lucena/Documents/GitHub/JSageAlterdata/src/jsageImport/modelo/persistencia/PersistenciaFuncionarioAD.java</file>
+            <file>file:/D:/Nyedja%20Lucena/Documents/GitHub/JSageAlterdata/src/jsageImport/modelo/persistencia/PersistenciaFuncionarioSAGE.java</file>
+            <file>file:/D:/Nyedja%20Lucena/Documents/GitHub/JSageAlterdata/src/jsageImport/modelo/ipersistencia/IPersistenciaFuncionarioSAGE.java</file>
+            <file>file:/D:/Nyedja%20Lucena/Documents/GitHub/JSageAlterdata/src/jsageImport/controler/ControlerFuncionarioSAGE.java</file>
+>>>>>>> bda876073c82daf189f6a079f177ad96b04320da
+        </group>
+    </open-files>
+</project-private>
