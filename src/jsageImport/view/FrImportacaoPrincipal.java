@@ -32,8 +32,9 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
      */
     public FrImportacaoPrincipal() {
         initComponents();
-        this.jbImportar.setEnabled(false);
+        this.jbListarFuncionarios.setEnabled(false);
         this.jImportarEmpresas.setEnabled(false);
+        this.jbListarFuncionarios.setEnabled(false);
         
     }
     
@@ -59,8 +60,8 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         }
         int total = empresas.size();
         jlQRegistros.setText("Quantidade de Registros: "+ total);
-        this.jbImportar.setEnabled(true);
-        this.jImportarEmpresas.setEnabled(true);
+        this.jbListarFuncionarios.setEnabled(true);
+        //this.jImportarEmpresas.setEnabled(true);
     }
     
     public void removerLinhasDaTabela (DefaultTableModel model){
@@ -145,7 +146,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         tFuncionarios = new javax.swing.JTable();
         jbPesquisar = new javax.swing.JButton();
         jlQRegistros = new javax.swing.JLabel();
-        jbImportar = new javax.swing.JButton();
+        jbListarFuncionarios = new javax.swing.JButton();
         jImportarEmpresas = new javax.swing.JButton();
         lStatus = new javax.swing.JLabel();
 
@@ -182,11 +183,11 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
 
         jlQRegistros.setText("Quantidade de Registros:");
 
-        jbImportar.setMnemonic('l');
-        jbImportar.setText("Listar Funcionários");
-        jbImportar.addActionListener(new java.awt.event.ActionListener() {
+        jbListarFuncionarios.setMnemonic('l');
+        jbListarFuncionarios.setText("Listar Funcionários");
+        jbListarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbImportarActionPerformed(evt);
+                jbListarFuncionariosActionPerformed(evt);
             }
         });
 
@@ -215,7 +216,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jImportarEmpresas)
                         .addGap(36, 36, 36)
-                        .addComponent(jbImportar))
+                        .addComponent(jbListarFuncionarios))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -229,7 +230,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPesquisar)
-                    .addComponent(jbImportar)
+                    .addComponent(jbListarFuncionarios)
                     .addComponent(jImportarEmpresas))
                 .addGap(18, 18, 18)
                 .addComponent(lStatus)
@@ -249,7 +250,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbPesquisarActionPerformed
 
-    private void jbImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbImportarActionPerformed
+    private void jbListarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarFuncionariosActionPerformed
         EmpresaAD pj = null;
         FrImportacaoFuncionarioProgresso pjFun = new FrImportacaoFuncionarioProgresso();
         try {
@@ -266,7 +267,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
         }catch (JSageImportException ex){
             //this.exibirMensagem(ex.getMessage(), "Mensagem de Erro", true);
         } 
-    }//GEN-LAST:event_jbImportarActionPerformed
+    }//GEN-LAST:event_jbListarFuncionariosActionPerformed
 
     private void jImportarEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jImportarEmpresasActionPerformed
         PessoaJuridica pj = null;
@@ -291,7 +292,7 @@ public class FrImportacaoPrincipal extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jImportarEmpresas;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbImportar;
+    private javax.swing.JButton jbListarFuncionarios;
     private javax.swing.JButton jbPesquisar;
     private javax.swing.JLabel jlQRegistros;
     private javax.swing.JLabel lStatus;

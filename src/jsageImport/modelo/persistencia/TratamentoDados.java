@@ -495,7 +495,28 @@ public class TratamentoDados {
         }
         return resultado;
     }
-    
+    public short trataEstadoCivil (String estado) throws JSageImportException{
+        short resultado = 0;
+               
+        if (estado.equals("S")){
+            resultado = 1;
+        }            
+        if (estado.equals("C")){
+            resultado = 2;
+        }            
+        if (estado.equals("D")){
+            resultado = 4;
+        }
+        if (estado.equals("P")){
+            resultado = 3;
+        }
+        if (estado.equals("O")){
+            resultado = 6;
+        }else{
+            resultado = 6;
+        }
+        return resultado;
+    }
     public String recuperarRaca (int raca) throws JSageImportException{
         String ra ="";
         if(raca == 1){

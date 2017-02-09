@@ -33,7 +33,7 @@
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="jImportarEmpresas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jbImportar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbListarFuncionarios" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="654" max="-2" attributes="0"/>
               </Group>
@@ -51,7 +51,7 @@
               <EmptySpace pref="44" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbImportar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbListarFuncionarios" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jImportarEmpresas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -129,13 +129,13 @@
         <Property name="text" type="java.lang.String" value="Quantidade de Registros:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbImportar">
+    <Component class="javax.swing.JButton" name="jbListarFuncionarios">
       <Properties>
         <Property name="mnemonic" type="int" value="108"/>
         <Property name="text" type="java.lang.String" value="Listar Funcion&#xe1;rios"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbImportarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbListarFuncionariosActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jImportarEmpresas">

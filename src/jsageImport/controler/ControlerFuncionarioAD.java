@@ -24,4 +24,12 @@ public class ControlerFuncionarioAD {
         
         return listaFuncionarios;
     }
+    
+    public String exportarFuncionarios (int cdEmpresaSage, int cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException{
+        String tag = "";
+        IGerenciadorPersistenciaAD gerenteP = new GerenciadorPersistenciaAD();
+        IPersistenciaFuncionarioAD PFuncionario = gerenteP.getPersistenciaFuncionarioAD();
+        tag =PFuncionario.exportarFuncionarios(cdEmpresaSage, cdEmpresa, cnpj, cdFuncionario);
+        return tag;
+    }
 }

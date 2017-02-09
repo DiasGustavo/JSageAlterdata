@@ -18,7 +18,7 @@ public interface IPersistenciaFuncionarioAD {
     public abstract List recuperarFuncionarioPorId (int cdEmpresa, String cdFuncionario) throws JSageImportException;
     public abstract boolean TestaConexao (String server, String bd, String port, String user, String password) throws JSageImportException;
     public abstract String importaFuncionarios (int idFuncionario, int cdEmpresa, String cpf) throws JSageImportException;
-    public abstract String exportarFuncionarios (int cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException;
+    public abstract String exportarFuncionarios (int cdEmpresaSAGE, int cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException;
     public abstract int SizeImport() throws JSageImportException;
     
 }

@@ -41,6 +41,13 @@ public class ControlerFuncionarioSAGE {
         return listaEmp;
     }
     
+    public List pesquisarIdPorCNPJ (String cnpj) throws JSageImportException{
+        IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
+        IPersistenciaFuncionarioSAGE PFuncionario = gerenteP.getPersistenciaFuncionario();
+        List lfuncionarios = PFuncionario.pesquisarIdPorCNPJ(cnpj);
+        return lfuncionarios;
+    }
+    
     public List pesquisarFuncionario (int idFuncionario, int cdEmpresa, String cpf) throws JSageImportException{
         List listaEmp;
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
@@ -69,42 +76,42 @@ public class ControlerFuncionarioSAGE {
     }
     
       
-    public void gravarFuncionario (int cdEmpresa, FuncionarioAD funAD, DadosFuncionaisNG fun) throws JSageImportException{
+    public void gravarFuncionario (int cdEmpresa, FuncionarioAD funAD) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
-        PEmpresa.gravarFuncionario(cdEmpresa, funAD, fun);
+        PEmpresa.gravarFuncionario(cdEmpresa, funAD);
         
     }
     
-    public void gravarDocumentos (int cdFuncionario, int cdEmpresa, DadosFuncionario pf) throws JSageImportException{
+    public void gravarDocumentos (int cdFuncionario, int cdEmpresa, FuncionarioAD pf) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
         PEmpresa.gravarDocumentos(cdFuncionario, cdEmpresa, pf);
         
     }
     
-    public void gravarDadosLotacao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG fun) throws JSageImportException{
+    public void gravarLotacao (int cdFuncionario, int cdEmpresa, int cdEstabelecimento, FuncionarioAD df) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
-        PEmpresa.gravarLotacao(cdFuncionario, cdEmpresa, fun);
+        PEmpresa.gravarLotacao(cdFuncionario, cdEmpresa, cdEstabelecimento, df);
         
     }
     
-    public void gravarColaborador ( int cdEmpresa, int cdFuncionario, DadosFuncionario pf) throws JSageImportException{
+    public void gravarColaborador ( int cdEmpresa, int cdFuncionario, FuncionarioAD pf) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
         PEmpresa.gravarColaborador(cdEmpresa, cdFuncionario, pf);
         
     }   
     
-    public void gravarFuncao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG fun ) throws JSageImportException{
+    public void gravarFuncao (int cdFuncionario, int cdEmpresa, FuncionarioAD fun ) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
         PEmpresa.gravarFuncao(cdFuncionario, cdEmpresa, fun);
         
     }
     
-    public void gravarSalario (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG fun) throws JSageImportException{
+    public void gravarSalario (int cdFuncionario, int cdEmpresa, FuncionarioAD fun) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
         PEmpresa.gravarSalario(cdFuncionario, cdEmpresa, fun);
@@ -118,10 +125,10 @@ public class ControlerFuncionarioSAGE {
         
     }
     
-    public void gravarDadosFuncionais (int cdEmpresa, int cdFuncionario, DadosFuncionaisNG fun, DadosFuncionario pf ) throws JSageImportException{
+    public void gravarDadosFuncionais (int cdEmpresa, int cdFuncionario, FuncionarioAD fun ) throws JSageImportException{
         IGerenciadorPersistenciaSAGE gerenteP = new GerenciadorPersistenciaSAGE();
         IPersistenciaFuncionarioSAGE PEmpresa = gerenteP.getPersistenciaFuncionario();
-        PEmpresa.gravarDadosFuncionais(cdEmpresa, cdFuncionario, fun, pf);
+        PEmpresa.gravarDadosFuncionais(cdEmpresa, cdFuncionario, fun);
         
     }
     

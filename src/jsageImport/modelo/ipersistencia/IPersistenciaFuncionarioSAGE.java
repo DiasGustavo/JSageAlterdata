@@ -23,18 +23,19 @@ public interface IPersistenciaFuncionarioSAGE {
     
     public abstract List pesquisaCNPJ(String cnpj) throws JSageImportException;
     public abstract List pesquisaIDCNPJ(int id, String cnpj) throws JSageImportException;
+    public abstract List pesquisarIdPorCNPJ (String cnpj) throws JSageImportException;
     public abstract List pesquisaIdDependente (int cdFuncionario, int idDependente) throws JSageImportException;
     public abstract List pesquisaFuncionario(int idPessoa, int cdEmpresa, String cpf) throws JSageImportException;
     public abstract List pesquisaFuncionarioNome( int cdEmpresa, String cpf) throws JSageImportException;
     
-    public abstract void gravarFuncionario (int cdEmpresa, FuncionarioAD funAD, DadosFuncionaisNG fun) throws JSageImportException;
-    public abstract void gravarDocumentos (int cdFuncionario, int cdEmpresa, DadosFuncionario pf) throws JSageImportException;
-    public abstract void gravarLotacao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JSageImportException;
-    public abstract void gravarColaborador (int cdEmpresa, int cdFuncionario, DadosFuncionario df) throws JSageImportException;
-    public abstract void gravarFuncao (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JSageImportException;
-    public abstract void gravarSalario (int cdFuncionario, int cdEmpresa, DadosFuncionaisNG df) throws JSageImportException;
+    public abstract void gravarFuncionario (int cdEmpresa, FuncionarioAD funAD) throws JSageImportException;
+    public abstract void gravarDocumentos (int cdFuncionario, int cdEmpresa, FuncionarioAD pf) throws JSageImportException;
+    public abstract void gravarLotacao (int cdFuncionario, int cdEmpresa, int cdEstabelecimento, FuncionarioAD df) throws JSageImportException;
+    public abstract void gravarColaborador (int cdEmpresa, int cdFuncionario, FuncionarioAD df) throws JSageImportException;
+    public abstract void gravarFuncao (int cdFuncionario, int cdEmpresa, FuncionarioAD df) throws JSageImportException;
+    public abstract void gravarSalario (int cdFuncionario, int cdEmpresa, FuncionarioAD df) throws JSageImportException;
     public abstract void gravarDependentes (int cdFuncionario, int cdEmpresa, DependenteNG dep) throws JSageImportException;
-    public abstract void gravarDadosFuncionais (int cdEmpresa, int cdFuncionario, DadosFuncionaisNG df, DadosFuncionario fun) throws JSageImportException;
+    public abstract void gravarDadosFuncionais (int cdEmpresa, int cdFuncionario, FuncionarioAD fun) throws JSageImportException;
     public abstract void gravarFerias (int cdFuncionario,int cdEmpresa, FeriasNG ferias) throws JSageImportException;
     public abstract void gravarControleESocial (int cdEmpresa, int cdFuncionario) throws JSageImportException;
     public abstract void gravarControleCamposESocial (int cdEmpresa, int cdFuncionario) throws JSageImportException;

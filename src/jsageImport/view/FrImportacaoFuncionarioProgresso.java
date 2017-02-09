@@ -4,6 +4,7 @@
 package jsageImport.view;
 
 import java.awt.Dimension;
+import static java.lang.Thread.sleep;
 import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
@@ -109,73 +110,51 @@ public class FrImportacaoFuncionarioProgresso extends javax.swing.JInternalFrame
     
     public void importarDados () throws JSageImportException{
             
-            ControlerFuncionarioAD control = new ControlerFuncionarioAD();
-            ControlerFuncionarioSAGE ctr = new ControlerFuncionarioSAGE();
-            List empresas = ctr.pesquisarCNPJ(this.cnpj);
-            //captura as inforamações da empresa para onde os funcionários serão inseridos
-            EmpresaSAGE emp = (EmpresaSAGE)empresas.get(0);
+        ControlerFuncionarioAD control = new ControlerFuncionarioAD();
+        ControlerFuncionarioSAGE ctr = new ControlerFuncionarioSAGE();
+        List empresas = ctr.pesquisarCNPJ(this.cnpj);
+        //captura as inforamações da empresa para onde os funcionários serão inseridos
+        if (empresas.size() > 0) {
+            EmpresaSAGE emp = (EmpresaSAGE) empresas.get(0);
             jlStatus.setText("Importando os Funcionários Aguarde ...");
-            
-            int reply = JOptionPane.showConfirmDialog(null, "Deseja realizar a importação dos Funcionários da Empresa de CNPJ: " + this.cnpj+"\n Para Empresa de CNPJ:" + emp.getCnpj_cpf()+" ?", "Aviso de importação", JOptionPane.YES_NO_OPTION);
-            
-            if(reply == JOptionPane.YES_OPTION){               
-                new Thread(){
-                    public void run(){
-                       /* try{
-                                            
-                            int porcent = 100/funcionarios.size();//retorna a porcentagem de um registro
-                            int progresso = 0;
-                            for(int i= 0; i < funcionarios.size(); i++){
+            int idEmpresaAD = this.idpj;
+            int reply = JOptionPane.showConfirmDialog(null, "Deseja realizar a importação dos Funcionários da Empresa de CNPJ: " + this.cnpj + "\n Para Empresa de CNPJ:" + emp.getCnpj_cpf() + " ?", "Aviso de importação", JOptionPane.YES_NO_OPTION);
+
+            if (reply == JOptionPane.YES_OPTION) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+
+                            TelaCarregando telaCarregando = new TelaCarregando();
+                            telaCarregando.setVisible(true);
+                            for (int i = 0; i < funcionarios.size(); i++) {
                                 sleep(100);
-                                pb.setValue(porcent);
-                                PessoaFisica pfGravar =(PessoaFisica) funcionarios.get(i);                                    
-                    
-                                control.ImportarFuncionarios(pfGravar.getIdPessoa(), emp.getCd_empresa(),  pfGravar.getNomePessoa());
-                                //System.out.println(pfGravar.getIdPessoa()+ "-- " + pfGravar.getCpfFormatado());              
-                                if (progresso < funcionarios.size()){
-                                    jlStatus.setText("Registro: " + pfGravar.getIdPessoa()+ " Gravado.");
-                                    porcent = porcent + porcent;
-                                }
-                                if (progresso == funcionarios.size()-1){
-                                    jlStatus.setText("Status: Concluído!");                       
-                                    JOptionPane.showMessageDialog(null, "Funcionarios Gravados com Sucesso!"); 
-                                    //return;
-                                }
-                                progresso++;
+
+                                FuncionarioAD pfGravar = (FuncionarioAD) funcionarios.get(i);
+                                control.exportarFuncionarios(emp.getCd_empresa(), idEmpresaAD, emp.getCnpj_cpf(), pfGravar.getCdchamada());
+                                jlStatus.setText("Registro: " + pfGravar.getCdchamada() + " Gravado.");
+
                             }
-                        } catch (JsageImportException ex) {
-                            Logger.getLogger(FrImportacaoFuncionarioProgresso.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (InterruptedException ex){
-                            
-                        }*/
-                        try{
-                                            
-                           TelaCarregando telaCarregando = new TelaCarregando();
-                           telaCarregando.setVisible(true);
-                            for(int i= 0; i < funcionarios.size(); i++){
-                                sleep(100);
-                               
-                                PessoaFisica pfGravar =(PessoaFisica) funcionarios.get(i);
-                                control.ImportarFuncionarios(pfGravar.getIdPessoa(), emp.getCd_empresa(),  pfGravar.getNomePessoa());
-                                jlStatus.setText("Registro: " + pfGravar.getIdPessoa()+ " Gravado.");
-                                
-                            }
-                            jlStatus.setText("Status: Concluído!");                       
+                            jlStatus.setText("Status: Concluído!");
                             telaCarregando.dispose();
-                            JOptionPane.showMessageDialog(null, "Funcionarios Gravados com Sucesso!"); 
+                            JOptionPane.showMessageDialog(null, "Funcionarios Gravados com Sucesso!");
                         } catch (JSageImportException ex) {
                             Logger.getLogger(FrImportacaoFuncionarioProgresso.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (InterruptedException ex){
-                            
+                        } catch (InterruptedException ex) {
+
                         }
-                        
+
                     }
                 }.start();
-                                              
-            
-            }else if (reply == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "A importação não foi realizada!"); 
-            }   
+
+            } else if (reply == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "A importação não foi realizada!");
+            }
+        }else{
+            throw new JSageImportException("Empresa não cadastrada no SAGE realize o cadatro da mesmo primeiro \n depois importe os seus funcionários..","Aviso");
+        }
+               
         
     }
     

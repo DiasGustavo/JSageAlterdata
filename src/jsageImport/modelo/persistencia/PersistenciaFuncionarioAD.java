@@ -117,14 +117,14 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
-    public String exportarFuncionarios (int cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException{
+    public String exportarFuncionarios (int cdEmpresaSAGE, int cdEmpresa, String cnpj, String cdFuncionario) throws JSageImportException{
         String funcionario = "";
         String log = "";
         ControlerFuncionarioSAGE controlFunSage = new ControlerFuncionarioSAGE();
         ControlerEmpresaSAGE controleEmpSage = new ControlerEmpresaSAGE();
-        
+        int idFuncionario = trataDados.converterSrintInt(cdFuncionario);
         if(!(cnpj.isEmpty())){
-            List listaIds = controlFunSage.pesquisarCNPJ(cnpj);
+            List listaIds = controlFunSage.pesquisarIdPorCNPJ(cnpj);
             log = "Existentes no SAGE: " +cdEmpresa + " --- " + cdFuncionario;
             logarq.LogTxt(log, "PersisntenciaAD", "emp"+cdEmpresa);
             List listaIdEstabelecimentos = controlFunSage.pesquisarIdEstablecimentoPorCNPJ(cnpj);
@@ -138,19 +138,21 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
                 //controleEmpSage.gravarCargo(funcionario, idEmpresa);
                 controleEmpSage.gravarBancoGeral(idEmpresa);
                 if (listaFuncionariosSage.isEmpty()){
-                    controlFunSage.gravarFuncionario(idEmpresa, funcionario, dadosFuncionais);
-                    controlFunSage.gravarDocumentos(cdFuncionario, idEmpresa, dadosFuncionais);
-                    controlFunSage.gravarLotacao(cdFuncionario, idEmpresa, (int) listaIdEstabelecimentos.get(0), funcionario);
-                    controlFunSage.gravarColaborador(idEmpresa, cdFuncionario, funcionario);
-                    controlFunSage.gravarFuncao(cdFuncionario, idEmpresa, funcionario);
-                    controlFunSage.gravarFunEspecifico(cdFuncionario, idEmpresa);
-                    controlFunSage.gravarSalario(cdFuncionario, idEmpresa, funcionario);
-                    controlFunSage.gravarFerias(cdFuncionario, idEmpresa, funcionario);
-                    controlFunSage.gravarControleESocial(cdFuncionario, idEmpresa);
-                    controlFunSage.gravarControleCamposESocial(idEmpresa, cdFuncionario);
-                    controlFunSage.gravarDadosFuncionais(idEmpresa, cdFuncionario, dadosFuncionais, funcionario);
+                    controlFunSage.gravarFuncionario(idEmpresa, funcionarioAD);
+                    controlFunSage.gravarDocumentos(idFuncionario, idEmpresa, funcionarioAD);
+                    controlFunSage.gravarLotacao(idFuncionario, idEmpresa, (int) listaIdEstabelecimentos.get(0), funcionarioAD);
+                    controlFunSage.gravarColaborador(idEmpresa, idFuncionario, funcionarioAD);
+                    controlFunSage.gravarFuncao(idFuncionario, idEmpresa, funcionarioAD);
+                    controlFunSage.gravarFunEspecifico(idFuncionario, idEmpresa);
+                    controlFunSage.gravarSalario(idFuncionario, idEmpresa, funcionarioAD);
+                    //controlFunSage.gravarFerias(cdFuncionario, idEmpresa, funcionario);
+                    controlFunSage.gravarControleESocial(idFuncionario, idEmpresa);
+                    controlFunSage.gravarControleCamposESocial(idEmpresa, idFuncionario);
+                    controlFunSage.gravarDadosFuncionais(idEmpresa, idFuncionario,funcionarioAD);
                 }
-                
+                log =  "Gravado o funcionario de código: "+cdFuncionario;
+                System.out.print(log);                
+                logarq.LogTxt(log, "PersisntenciaNG", "emp"+idEmpresa);
             }else{
                 
                 throw new JSageImportException("Empresa não cadastrada no SAGE realize o cadatro da mesmo primeiro \n depois importe os seu funcionários..","Aviso");

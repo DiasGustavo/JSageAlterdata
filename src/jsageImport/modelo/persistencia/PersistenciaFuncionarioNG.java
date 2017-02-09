@@ -705,13 +705,13 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
                 //o funcionário finalmente é gravado no banco sage
                 //controlSAGE.gravarFuncionario(idEmpresa, pjGravar, funDadosFuncionais);
                 //gravar os documentos do funcionário no banco
-                controlSAGE.gravarDocumentos(idPessoa, idEmpresa, pjGravar);
+                //controlSAGE.gravarDocumentos(idPessoa, idEmpresa, pjGravar);
                 //grava a lotação do funcionario indicado
-                controlSAGE.gravarDadosLotacao( idPessoa, idEmpresa, funDadosFuncionais);
+                //controlSAGE.gravarDadosLotacao( idPessoa, idEmpresa, funDadosFuncionais);
                 //grava o funcionario como colaborador da empresa
-                controlSAGE.gravarColaborador(idEmpresa, idPessoa, pjGravar);
+                //controlSAGE.gravarColaborador(idEmpresa, idPessoa, pjGravar);
                 //grava a função do funcionario
-                controlSAGE.gravarFuncao(idPessoa, idEmpresa, funDadosFuncionais);
+               // controlSAGE.gravarFuncao(idPessoa, idEmpresa, funDadosFuncionais);
                 //grava os dados especificos do funcionario
                 controlSAGE.gravarFunEspecifico(idPessoa, idEmpresa);
                 
@@ -720,7 +720,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
                     if (listaSalarios.size()>iterador){
                         DadosFuncionaisNG funSalarioAtual = (DadosFuncionaisNG) listaSalarios.get(iterador);
                         if (iterador == 0){
-                            controlSAGE.gravarSalario(idPessoa, idEmpresa, funSalarioAtual);
+                           // controlSAGE.gravarSalario(idPessoa, idEmpresa, funSalarioAtual);
                         }else {
                             if(listaSalarios.iterator().hasNext()){
                             
@@ -729,7 +729,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
                                 Timestamp dataAtual = funSalarioAtual.getDataIncio();
                                 Timestamp dataAnt = funSalarioAnt.getDataIncio();
                                 if(trataDados.compararData(dataAnt, dataAtual)){
-                                    controlSAGE.gravarSalario(idPessoa, idEmpresa, funSalarioAtual);
+                                    //controlSAGE.gravarSalario(idPessoa, idEmpresa, funSalarioAtual);
                                 }
                             }
                             
@@ -751,7 +751,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
                     if (listaFerias.size()>iterador){
                         FeriasNG funFeriasAtual = (FeriasNG) listaFerias.get(iterador);
                         if (iterador == 0){
-                            controlSAGE.gravarSalario(idPessoa, idEmpresa, funFeriasAtual);
+                            //controlSAGE.gravarSalario(idPessoa, idEmpresa, funFeriasAtual);
                         }else {
                             if(listaFerias.iterator().hasNext()){
                             
@@ -788,7 +788,7 @@ public class PersistenciaFuncionarioNG implements IPersistenciaFuncionarioNG {
                     }                       
                 }
                 //gravar os dados funcionais do funcionário
-                controlSAGE.gravarDadosFuncionais(idEmpresa, idPessoa, funDadosFuncionais, pjGravar); 
+               // controlSAGE.gravarDadosFuncionais(idEmpresa, idPessoa, funDadosFuncionais, pjGravar); 
                  //gravar os planos de saude
                 if (listaPlanosSaude.size() > 0){
                     for (int i = 0; i < listaPlanosSaude.size();i++ ){
