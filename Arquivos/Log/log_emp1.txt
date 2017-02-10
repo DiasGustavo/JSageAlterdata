@@ -1,0 +1,8 @@
+Registro: Gravado o funcionario de código: 000003 --- Data:Thu Feb 09 17:52:55 GMT-03:00 2017
+Registro: Gravado o funcionario de código: 000029 ---  Data:Thu Feb 09 17:52:56 GMT-03:00 2017
+Registro: Gravado o funcionario de código: 000013 ---  Data:Thu Feb 09 17:52:57 GMT-03:00 2017
+Registro: Gravado o funcionario de código: 000032 ---  Data:Thu Feb 09 17:52:58 GMT-03:00 2017
+Registro: Gravado o funcionario de código: 000028 ---  Data:Thu Feb 09 17:52:59 GMT-03:00 2017
+Registro: Gravado o funcionario de código: 000009 ---  Data:Thu Feb 09 17:53:00 GMT-03:00 2017
+Registro: Gravado o funcionario de código: 000010 ---  Data:Thu Feb 09 17:53:00 GMT-03:00 2017
+Registro: Gravado o funcionario de código: 000021 ---  Data:Thu Feb 09 17:53:01 GMT-03:00 2017

@@ -136,13 +136,13 @@ public class PersistenciaFuncionarioAD implements IPersistenciaFuncionarioAD{
                 
                 List listaFuncionariosSage = controlFunSage.pesquisaFuncionarioPorCpf(idEmpresa, funcionarioAD.getNrcpf());
                 //controleEmpSage.gravarCargo(funcionario, idEmpresa);
-                controleEmpSage.gravarBancoGeral(idEmpresa);
+                //controleEmpSage.gravarBancoGeral(idEmpresa);
                 if (listaFuncionariosSage.isEmpty()){
                     controlFunSage.gravarFuncionario(idEmpresa, funcionarioAD);
                     controlFunSage.gravarDocumentos(idFuncionario, idEmpresa, funcionarioAD);
                     controlFunSage.gravarLotacao(idFuncionario, idEmpresa, (int) listaIdEstabelecimentos.get(0), funcionarioAD);
                     controlFunSage.gravarColaborador(idEmpresa, idFuncionario, funcionarioAD);
-                    controlFunSage.gravarFuncao(idFuncionario, idEmpresa, funcionarioAD);
+                    //controlFunSage.gravarFuncao(idFuncionario, idEmpresa, funcionarioAD);
                     controlFunSage.gravarFunEspecifico(idFuncionario, idEmpresa);
                     controlFunSage.gravarSalario(idFuncionario, idEmpresa, funcionarioAD);
                     //controlFunSage.gravarFerias(cdFuncionario, idEmpresa, funcionario);

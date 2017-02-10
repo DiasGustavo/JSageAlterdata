@@ -348,7 +348,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             stmt = con.prepareStatement(SQL_INCLUIR_SALARIO);
             stmt.setInt(1, cdEmpresa);//cd_empresa
             stmt.setInt(2, cdFuncionario);//cd_funcionario
-            stmt.setTimestamp(3, df.getDtentrada());//dt_salario
+            stmt.setTimestamp(3, df.getDtadmissao());//dt_salario
             stmt.setString(4, trataDados.recuperaTipoSalario(1));//tipo_salario
             stmt.setDouble(5, horasSemanaisDefault);//nr_horas_semanais
             stmt.setDouble(6, trataDados.trataSalario(df.getVlsalariobase()));//vl_salario
@@ -437,7 +437,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             stmt.setTimestamp(14, pf.getDtvctohabilitacao());//vcto_habilitacao
             stmt.setBytes(15, fotoDefault);//foto
             stmt.setInt(16, 0);//nr_titulo
-            stmt.setShort(17,trataDados.convertStringToShort(pf.getNrtituloeleitor()) );//zona_titulo
+            stmt.setShort(17,trataDados.convertStringToShort(pf.getNrzonaeleitoral()) );//zona_titulo
             stmt.setShort(18, trataDados.convertStringToShort(pf.getNrsecaoeleitoral()));//secao_titulo
             stmt.setTimestamp(19, pf.getDtexpedicaoctps());//dt_emissao_carteira
             stmt.setTimestamp(20, pf.getDtexpedicao());//dt_emissao_identidade
@@ -493,7 +493,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             stmt.setInt(2, cdFuncionario);//cd_funcionario
             stmt.setTimestamp(3, fun.getDtadmissao());//dt_admissao
             stmt.setInt(4, trataDados.converterSrintInt(fun.getTpvinculo()));//vinculo_empregaticio_rais 
-            stmt.setInt(5, trataDados.trataTipoAdmissaoCaged(trataDados.recuperarAdmissaoCaged(fun.getTipo_admissao())) );//codigo_admissao_caged -> idtipoadmissaocaged string
+            stmt.setInt(5, 0 );//codigo_admissao_caged -> idtipoadmissaocaged string
             stmt.setInt(6, 0);//nr_registro
             stmt.setInt(7, 0);//dias_experiencia
             stmt.setString(8, "N");//temporario
@@ -502,7 +502,7 @@ public class PersistenciaFuncionarioSAGE implements IPersistenciaFuncionarioSAGE
             //stmt.setInt(11, trataDados.converterSrintInt(trataDados.recuperarAgencia(fun.getIdDadosAgencia())));//nr_agencia_temporario
             //stmt.setString(12, trataDados.recuperarDVAgencia(fun.getIdDadosAgencia()));//dv_agencia_temporario
             //stmt.setInt(13, trataDados.converterSrintInt(trataDados.recuperarConta(cdFuncionario)));//nr_conta_temporario
-            stmt.setInt(10, trataDados.pesquisarIDSindicato(trataDados.converterSrintInt(fun.getIdsindicatogrcs())));//cd_sindicato - não encontrado no ng
+            stmt.setInt(10, 1);//cd_sindicato - não encontrado no ng
             //stmt.setString(14, trataDados.recuperarDVConta(fun.getIdDadosBanco()));//dv_conta_temporario
             stmt.setString(11, trataDados.ValidaCampo(false));//sindicalizado
             stmt.setInt(12, 0);//situacao_contr_sindical
